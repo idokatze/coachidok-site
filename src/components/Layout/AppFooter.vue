@@ -16,10 +16,10 @@
 
     .footer-container {
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        justify-content: space-between;
         min-height: 4rem;
-        background-color: blue;
+        gap: 1rem;
     }
 
     .footer-brand {
@@ -29,5 +29,14 @@
 
     .footer-text {
         color: var(--clr-muted);
+    }
+
+    @media (max-width: 640px) {
+        .footer-container {
+            align-items: flex-start;
+            flex-direction: column;
+            justify-content: center;
+            padding-block: 1rem;
+        }
     }
 </style>

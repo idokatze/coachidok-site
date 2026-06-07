@@ -1,21 +1,32 @@
 :root {
-    /* Colors */
-    --clr-bg: #f8fbff;
+    /* Colors: mist, water, road, signal */
+    --clr-bg: #f7fbfa;
     --clr-surface: #ffffff;
-    --clr-surface-soft: #eef6ff;
+    --clr-surface-soft: #eaf5f3;
 
-    --clr-heading: #0b1f3a;
-    --clr-text: #26384f;
-    --clr-muted: #667892;
+    --clr-heading: #10232d;
+    --clr-text: #314653;
+    --clr-muted: #6b7d86;
 
-    --clr-border: #d9e6f2;
+    --clr-border: #d7e5e2;
 
-    --clr-primary: #1f5f99;
-    --clr-primary-dark: #123f66;
-    --clr-primary-soft: #dceeff;
+    --clr-primary: #0f6f8f;
+    --clr-primary-dark: #08485e;
+    --clr-primary-soft: #dff2f6;
 
-    --clr-action: #0f73b7;
-    --clr-action-hover: #0b5d94;
+    --clr-action: #ce4825;
+    --clr-action-hover: #bd3f20;
+    --clr-action-text: #ffffff;
+    --clr-accent: var(--clr-action);
+    --clr-hero-wash: rgb(223 242 246 / 58%);
+    --clr-hero-overlay-start: rgb(16 35 45 / 62%);
+    --clr-hero-overlay-end: rgb(16 35 45 / 8%);
+    --clr-hero-overlay-depth: rgb(16 35 45 / 12%);
+    --clr-hero-overlay-mobile-start: rgb(16 35 45 / 78%);
+    --clr-hero-overlay-mobile-end: rgb(16 35 45 / 34%);
+    --clr-hero-overlay-mobile-depth: rgb(16 35 45 / 24%);
+    --clr-hero-text-muted: rgb(255 255 255 / 86%);
+    --shadow-text: 0 2px 24px rgb(16 35 45 / 35%);
 
     /* Typography */
     --font-main:
@@ -24,6 +35,10 @@
     /* Layout tokens */
     --container-max: 1120px;
     --page-padding: 24px;
+    --section-padding: clamp(4rem, 8vw, 7rem);
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --shadow-soft: 0 20px 50px rgb(16 35 45 / 12%);
 }
 
 /* Basic reset */
@@ -70,6 +85,15 @@ a {
     text-decoration: none;
 }
 
+a,
+button {
+    transition:
+        color 160ms ease,
+        background-color 160ms ease,
+        border-color 160ms ease,
+        transform 160ms ease;
+}
+
 /* Text rhythm */
 h1,
 h2,
@@ -100,6 +124,65 @@ p {
 .container {
     width: min(calc(100% - 2 * var(--page-padding)), var(--container-max));
     margin-inline: auto;
+}
+
+.section {
+    padding-block: var(--section-padding);
+}
+
+.eyebrow {
+    color: var(--clr-primary);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.lead {
+    color: var(--clr-muted);
+    font-size: clamp(1.05rem, 2vw, 1.2rem);
+    line-height: 1.7;
+}
+
+.text-muted {
+    color: var(--clr-muted);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3rem;
+    padding: 0.85rem 1.15rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    line-height: 1;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    background: var(--clr-action);
+    color: var(--clr-action-text);
+}
+
+.btn-primary:hover {
+    background: var(--clr-action-hover);
+}
+
+.btn-secondary {
+    background: var(--clr-surface);
+    border-color: var(--clr-border);
+    color: var(--clr-heading);
+}
+
+.btn-secondary:hover {
+    border-color: var(--clr-primary);
+    color: var(--clr-primary);
 }
 
 /* Lists */
@@ -142,7 +225,7 @@ html {
 
 /* Accessible focus styling (only for keyboard users) */
 :focus-visible {
-    outline: 3px solid color-mix(in srgb, var(--clr-accent) 40%, white);
+    outline: 3px solid color-mix(in srgb, var(--clr-accent) 40%, var(--clr-surface));
     outline-offset: 2px;
 }
 
