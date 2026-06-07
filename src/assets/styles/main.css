@@ -1,0 +1,159 @@
+:root {
+    /* Colors */
+    --clr-bg: #f8fbff;
+    --clr-surface: #ffffff;
+    --clr-surface-soft: #eef6ff;
+
+    --clr-heading: #0b1f3a;
+    --clr-text: #26384f;
+    --clr-muted: #667892;
+
+    --clr-border: #d9e6f2;
+
+    --clr-primary: #1f5f99;
+    --clr-primary-dark: #123f66;
+    --clr-primary-soft: #dceeff;
+
+    --clr-action: #0f73b7;
+    --clr-action-hover: #0b5d94;
+
+    /* Typography */
+    --font-main:
+        system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+    /* Layout tokens */
+    --container-max: 1120px;
+    --page-padding: 24px;
+}
+
+/* Basic reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: var(--font-main);
+    color: var(--clr-text);
+    background: var(--clr-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+}
+
+/* Media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+/* Form inheritance */
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+/* Links */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Text rhythm */
+h1,
+h2,
+h3,
+h4,
+p {
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    color: var(--clr-heading);
+    line-height: 1.1;
+}
+
+p {
+    line-height: 1.6;
+}
+
+/* App root */
+#app {
+    min-height: 100vh;
+}
+
+/* Tiny global utility */
+.container {
+    width: min(calc(100% - 2 * var(--page-padding)), var(--container-max));
+    margin-inline: auto;
+}
+
+/* Lists */
+ul,
+ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Tables */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* Common element resets */
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+legend {
+    padding: 0;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: var(--clr-border);
+}
+
+/* Mobile polish */
+html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    font-size: 16px; /* base font size; adjust if you prefer a fluid scale */
+}
+
+/* Accessible focus styling (only for keyboard users) */
+:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--clr-accent) 40%, white);
+    outline-offset: 2px;
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+    }
+}
