@@ -52,8 +52,8 @@ import HelloWorld from './pages/HelloWorld.vue'
 </template>
 
 <script>
-    import AppHeader from './components/AppHeader.vue'
-    import AppFooter from './components/AppFooter.vue'
+    import AppHeader from './components/Layout/AppHeader.vue'
+    import AppFooter from './components/Layout/AppFooter.vue'
 
     export default {
         components: {
