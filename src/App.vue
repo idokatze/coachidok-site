@@ -1,8 +1,12 @@
 <template>
     <div class="app">
+        <a class="skip-link" href="#main-content">
+            {{ $t('app.skipToContent') }}
+        </a>
+
         <AppHeader />
 
-        <main class="main-content">
+        <main id="main-content" class="main-content" tabindex="-1">
             <RouterView />
         </main>
 

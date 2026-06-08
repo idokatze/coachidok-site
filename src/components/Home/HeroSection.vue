@@ -6,18 +6,17 @@
 
         <div class="container hero-container">
             <div class="hero-content">
-                <p class="eyebrow">Coach Ido K</p>
+                <p class="eyebrow">{{ $t('hero.eyebrow') }}</p>
 
-                <h1>Triathlon Coaching for Athletes Who Want to Train Smarter</h1>
+                <h1>{{ $t('hero.title') }}</h1>
 
-                <p class="lead">
-                    Personalized endurance coaching built around your goals,
-                    your schedule, and your life.
-                </p>
+                <p class="lead">{{ $t('hero.lead') }}</p>
 
-                <RouterLink to="/contact" class="btn btn-primary">
-                    Book a Free Consultation
-                </RouterLink>
+                <div class="hero-actions">
+                    <RouterLink to="/contact" class="btn btn-primary">
+                        {{ $t('hero.cta') }}
+                    </RouterLink>
+                </div>
             </div>
         </div>
     </section>
@@ -42,7 +41,7 @@
         z-index: -1;
         background:
             linear-gradient(
-                90deg,
+                var(--hero-overlay-angle),
                 var(--clr-hero-overlay-start),
                 var(--clr-hero-overlay-end)
             ),
@@ -64,13 +63,16 @@
 
     .hero-container {
         width: min(calc(100% - 2 * var(--page-padding)), var(--container-max));
+        min-height: inherit;
     }
 
     .hero-content {
-        display: grid;
-        justify-items: start;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
         gap: 0.9rem;
         max-width: 36rem;
+        min-height: inherit;
         text-shadow: var(--shadow-text);
     }
 
@@ -89,6 +91,17 @@
         color: var(--clr-hero-text-muted);
     }
 
+    .hero-actions {
+        margin-top: auto;
+        padding-block-end: clamp(2.5rem, 4vw, 3.75rem);
+    }
+
+    .hero-actions .btn {
+        min-height: 3.5rem;
+        padding: 1rem 1.4rem;
+        font-size: 1rem;
+    }
+
     @media (max-width: 860px) {
         .hero-section {
             min-height: clamp(38rem, calc(100svh - 6rem), 46rem);
@@ -99,13 +112,17 @@
             max-width: 17ch;
             font-size: clamp(2.2rem, 9.5vw, 3.25rem);
         }
+
+        .hero-actions {
+            padding-block-end: clamp(2rem, 4vw, 3rem);
+        }
     }
 
     @media (max-width: 560px) {
         .hero-section::before {
             background:
                 linear-gradient(
-                    90deg,
+                    var(--hero-overlay-angle),
                     var(--clr-hero-overlay-mobile-start),
                     var(--clr-hero-overlay-mobile-end)
                 ),
@@ -117,7 +134,11 @@
         }
 
         .hero-background img {
-            object-position: 58% center;
+            object-position: var(--hero-image-position-mobile);
+        }
+
+        .hero-actions {
+            padding-block-end: 1rem;
         }
     }
 </style>

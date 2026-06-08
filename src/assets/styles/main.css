@@ -1,23 +1,35 @@
 :root {
-    /* Colors: mist, water, road, signal */
+    /* Colors: mist, water, road, signal, race day */
     --clr-bg: #f7fbfa;
     --clr-surface: #ffffff;
-    --clr-surface-soft: #eaf5f3;
+    --clr-surface-soft: #e8f6f8;
 
     --clr-heading: #10232d;
     --clr-text: #314653;
     --clr-muted: #6b7d86;
 
-    --clr-border: #d7e5e2;
+    --clr-border: #d4e6e9;
 
-    --clr-primary: #0f6f8f;
-    --clr-primary-dark: #08485e;
-    --clr-primary-soft: #dff2f6;
+    --clr-primary: #087fa3;
+    --clr-primary-dark: #064b63;
+    --clr-primary-soft: #dff4f8;
 
     --clr-action: #ce4825;
     --clr-action-hover: #bd3f20;
     --clr-action-text: #ffffff;
     --clr-accent: var(--clr-action);
+    --clr-highlight: #f3c438;
+    --clr-brand-whatsapp: #25d366;
+    --clr-brand-email: var(--clr-action);
+    --clr-brand-trainingpeaks: #005fba;
+    --clr-brand-linkedin: #0a66c2;
+    --clr-brand-on-color: #ffffff;
+    --clr-header-bg: var(--clr-surface-soft);
+    --clr-header-text: var(--clr-heading);
+    --clr-header-link: var(--clr-text);
+    --clr-footer-bg: var(--clr-heading);
+    --clr-footer-text: rgb(255 255 255 / 72%);
+    --clr-footer-heading: var(--clr-surface);
     --clr-hero-wash: rgb(223 242 246 / 58%);
     --clr-hero-overlay-start: rgb(16 35 45 / 62%);
     --clr-hero-overlay-end: rgb(16 35 45 / 8%);
@@ -26,7 +38,12 @@
     --clr-hero-overlay-mobile-end: rgb(16 35 45 / 34%);
     --clr-hero-overlay-mobile-depth: rgb(16 35 45 / 24%);
     --clr-hero-text-muted: rgb(255 255 255 / 86%);
+    --clr-backdrop: rgb(16 35 45 / 42%);
     --shadow-text: 0 2px 24px rgb(16 35 45 / 35%);
+    --shadow-nav: 0 10px 30px rgb(16 35 45 / 7%);
+    --hero-overlay-angle: 90deg;
+    --hero-image-position-mobile: 58% center;
+    --drawer-closed-clip: inset(0 0 0 100%);
 
     /* Typography */
     --font-main:
@@ -39,6 +56,12 @@
     --radius-sm: 6px;
     --radius-md: 8px;
     --shadow-soft: 0 20px 50px rgb(16 35 45 / 12%);
+}
+
+:root:dir(rtl) {
+    --hero-overlay-angle: 270deg;
+    --hero-image-position-mobile: 42% center;
+    --drawer-closed-clip: inset(0 100% 0 0);
 }
 
 /* Basic reset */
@@ -147,6 +170,36 @@ p {
 
 .text-muted {
     color: var(--clr-muted);
+}
+
+.sr-only {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.skip-link {
+    position: absolute;
+    inset-inline-start: var(--page-padding);
+    inset-block-start: 0.75rem;
+    z-index: 100;
+    padding: 0.8rem 1rem;
+    border-radius: var(--radius-sm);
+    background: var(--clr-surface);
+    color: var(--clr-heading);
+    font-weight: 800;
+    transform: translateY(-140%);
+    transition: transform 160ms ease;
+}
+
+.skip-link:focus {
+    transform: translateY(0);
 }
 
 .btn {
