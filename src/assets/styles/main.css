@@ -1,13 +1,13 @@
 :root {
     /* Colors: mist, water, road, signal, race day */
-    --clr-bg: #f7fbfa;
+    --clr-bg: #f1f7f8;
     --clr-surface: #ffffff;
-    --clr-surface-soft: #e8f6f8;
+    --clr-surface-soft: #dbeef2;
     --clr-surface-plain: #ffffff;
-    --clr-surface-mist: #f4fafb;
-    --clr-surface-water: #e9f5f8;
-    --clr-surface-tide: #dceef2;
-    --clr-surface-deep: #cfe6eb;
+    --clr-surface-mist: #eaf3f5;
+    --clr-surface-water: #d8eaee;
+    --clr-surface-tide: #c7dfe5;
+    --clr-surface-deep: #b6d3da;
 
     --clr-heading: #10232d;
     --clr-text: #314653;
@@ -17,7 +17,7 @@
 
     --clr-primary: #087fa3;
     --clr-primary-dark: #064b63;
-    --clr-primary-soft: #dff4f8;
+    --clr-primary-soft: #cfe8ee;
 
     --clr-action: #ce4825;
     --clr-action-hover: #bd3f20;
@@ -48,7 +48,6 @@
     --shadow-nav: 0 10px 30px rgb(16 35 45 / 7%);
     --hero-overlay-angle: 90deg;
     --hero-image-position-mobile: 58% center;
-    --drawer-closed-clip: inset(0 0 0 100%);
 
     /* Typography */
     --font-main:
@@ -68,7 +67,6 @@
 :root:dir(rtl) {
     --hero-overlay-angle: 270deg;
     --hero-image-position-mobile: 42% center;
-    --drawer-closed-clip: inset(0 100% 0 0);
 }
 
 /* Basic reset */
@@ -174,8 +172,8 @@ p {
 
 .eyebrow {
     color: var(--clr-primary);
-    font-size: 0.82rem;
-    font-weight: 700;
+    font-size: 0.92rem;
+    font-weight: 800;
     letter-spacing: 0;
     line-height: 1.2;
     text-transform: uppercase;
@@ -225,12 +223,18 @@ p {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 3rem;
-    padding: 0.85rem 1.15rem;
+    min-height: 3.1rem;
+    padding: 0.9rem 1.2rem;
     border: 1px solid transparent;
     border-radius: var(--radius-sm);
-    font-weight: 700;
+    font-weight: 800;
     line-height: 1;
+    transition:
+        transform 160ms ease,
+        background-color 160ms ease,
+        border-color 160ms ease,
+        box-shadow 160ms ease,
+        color 160ms ease;
 }
 
 .btn:hover {
@@ -247,18 +251,21 @@ p {
 }
 
 .btn-secondary {
-    background: color-mix(in srgb, var(--clr-primary) 8%, var(--clr-surface));
-    border-color: color-mix(in srgb, var(--clr-primary) 22%, var(--clr-border));
-    color: var(--clr-heading);
+    background: color-mix(in srgb, var(--clr-heading) 88%, black 12%);
+    border-color: color-mix(in srgb, var(--clr-primary-soft) 22%, transparent);
+    color: var(--clr-surface);
     box-shadow:
-        0 10px 24px rgb(16 35 45 / 6%),
-        inset 0 1px 0 rgb(255 255 255 / 78%);
+        0 14px 30px rgb(10 24 32 / 14%),
+        inset 0 1px 0 rgb(255 255 255 / 5%);
 }
 
 .btn-secondary:hover {
-    border-color: var(--clr-primary);
-    color: var(--clr-primary);
-    background: color-mix(in srgb, var(--clr-primary) 12%, var(--clr-surface));
+    border-color: color-mix(in srgb, var(--clr-primary) 38%, transparent);
+    color: var(--clr-surface);
+    background: color-mix(in srgb, var(--clr-heading) 78%, var(--clr-primary) 22%);
+    box-shadow:
+        0 16px 34px rgb(10 24 32 / 18%),
+        inset 0 1px 0 rgb(255 255 255 / 7%);
 }
 
 /* Lists */

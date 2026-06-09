@@ -129,23 +129,25 @@
             grid-template-columns: 1fr;
             gap: 1.15rem;
             padding-block: 1.2rem 1.35rem;
+            justify-items: center;
         }
 
         .footer-meta {
-            justify-items: start;
+            justify-items: center;
             gap: 0.75rem;
             padding-inline-start: 0;
             padding-block-start: 1rem;
             border-inline-start: 0;
             border-block-start: 1px solid rgb(255 255 255 / 10%);
+            inline-size: 100%;
         }
 
         .footer-contact-links {
-            justify-content: flex-start;
+            justify-content: center;
         }
 
         .footer-text {
-            text-align: start;
+            text-align: center;
         }
     }
 </style>
