@@ -1,5 +1,5 @@
 <template>
-    <section class="section about-preview-section">
+    <section class="section section-topless about-preview-section">
         <div class="container about-preview-layout">
             <div class="about-preview-intro">
                 <h2>{{ coachBio.name }}</h2>
@@ -25,9 +25,10 @@
             </div>
 
             <div class="about-preview-copy">
-                <p class="lead">{{ coachBio.summary }}</p>
-                <p>{{ coachBio.homeIntro }}</p>
-                <p class="text-muted">{{ coachBio.homeCredibility }}</p>
+                <div class="about-preview-body">
+                    <p>{{ coachBio.homeIntro }}</p>
+                    <p>{{ coachBio.homeCredibility }}</p>
+                </div>
 
                 <RouterLink to="/about" class="btn btn-secondary">
                     {{ $t('about.moreAboutMe') }}
@@ -57,15 +58,14 @@
 
 <style scoped>
     .about-preview-section {
-        background: var(--clr-surface);
+        background: var(--clr-surface-plain);
         border-block-start: 1px solid color-mix(in srgb, var(--clr-primary) 16%, transparent);
         box-shadow: inset 0 16px 32px rgb(8 127 163 / 4%);
-        padding-block-start: 0;
     }
 
     .about-preview-layout {
         display: grid;
-        grid-template-columns: minmax(16rem, 0.9fr) minmax(0, 1.1fr);
+        grid-template-columns: minmax(14rem, 0.74fr) minmax(0, 1.26fr);
         align-items: start;
         gap: clamp(2rem, 5vw, 4rem);
         padding-block-start: clamp(2.1rem, 4vw, 3rem);
@@ -92,7 +92,9 @@
     }
 
     .about-preview-image-wrap {
+        justify-self: start;
         overflow: hidden;
+        max-inline-size: 24rem;
         border: 1px solid color-mix(in srgb, var(--clr-primary) 16%, transparent);
         border-radius: var(--radius-md);
         background: var(--clr-surface);
@@ -101,15 +103,25 @@
 
     .about-preview-image-wrap img {
         inline-size: 100%;
-        aspect-ratio: 4 / 5;
+        aspect-ratio: 4 / 4.55;
         object-fit: cover;
-        object-position: center 20%;
+        object-position: center 16%;
     }
 
     .about-preview-copy {
         display: grid;
-        gap: 1rem;
+        gap: 1.15rem;
         max-inline-size: 42rem;
+    }
+
+    .about-preview-body {
+        display: grid;
+        gap: 0.9rem;
+    }
+
+    .about-preview-body p {
+        color: var(--clr-text);
+        line-height: 1.75;
     }
 
     .about-preview-keywords {
@@ -146,6 +158,10 @@
     @media (max-width: 860px) {
         .about-preview-layout {
             grid-template-columns: 1fr;
+        }
+
+        .about-preview-image-wrap {
+            max-inline-size: min(100%, 22rem);
         }
 
         .about-preview-keywords {

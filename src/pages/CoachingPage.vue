@@ -1,6 +1,6 @@
 <template>
     <main class="coaching-page">
-        <section class="section coaching-hero">
+        <section class="section section-tight coaching-hero">
             <div class="container coaching-hero-layout">
                 <div class="coaching-copy">
                     <p class="eyebrow">{{ $t('coaching.eyebrow') }}</p>
@@ -110,6 +110,7 @@
     }
 
     .coaching-hero {
+        background: var(--clr-surface-mist);
         padding-block-end: clamp(3rem, 6vw, 4.5rem);
     }
 
@@ -171,7 +172,7 @@
     .coaching-cta {
         border: 1px solid var(--clr-border);
         border-radius: var(--radius-md);
-        background: color-mix(in srgb, var(--clr-surface) 92%, transparent);
+        background: var(--clr-surface-plain);
         box-shadow: var(--shadow-nav);
     }
 
@@ -227,6 +228,14 @@
         justify-content: space-between;
         gap: 1.5rem;
         padding: clamp(1.5rem, 4vw, 2rem);
+    }
+
+    .coaching-process-section {
+        background: var(--clr-surface-tide);
+    }
+
+    .coaching-cta-section {
+        background: var(--clr-surface-water);
     }
 
     .coaching-cta .lead {

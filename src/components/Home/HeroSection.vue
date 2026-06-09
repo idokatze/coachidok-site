@@ -28,9 +28,9 @@
         isolation: isolate;
         display: grid;
         align-items: start;
-        min-height: clamp(40rem, calc(100svh - 4rem), 50rem);
+        min-height: clamp(34rem, calc(88svh - 4rem), 44rem);
         overflow: hidden;
-        padding-block: clamp(3rem, 5vw, 3.5rem);
+        padding-block: clamp(2.5rem, 4vw, 3rem);
         background: var(--clr-heading);
     }
 
@@ -104,8 +104,8 @@
 
     @media (max-width: 860px) {
         .hero-section {
-            min-height: clamp(38rem, calc(100svh - 6rem), 46rem);
-            padding-block: clamp(2.75rem, 8vw, 4rem);
+            min-height: clamp(32rem, calc(82svh - 5rem), 40rem);
+            padding-block: clamp(2.35rem, 6vw, 3rem);
         }
 
         .hero-content h1 {

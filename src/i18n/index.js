@@ -51,27 +51,40 @@ const messages = {
             summary:
                 'I help endurance athletes train with structure, clarity, and long-term purpose.',
             keywords: [
+                'Personalized planning',
                 'Detail-oriented',
-                'Tailored to the athlete',
-                'Hands-on',
-                'Growth-minded',
+                'Process-driven',
+                'Hands-on support',
             ],
             homeIntro:
-                'For more than 15 years, I have coached athletes across swimming, running, and triathlon, from first steps in sport to junior, elite, and adult athletes training toward meaningful goals.',
+                'I coach endurance athletes across ages and levels, building training that fits their goals, current ability, and the realities of life around the sport.',
             homeCredibility:
-                'My work has ranged from club coaching to national-team and academy roles, always with the goal of building training around the athlete, not the other way around.',
+                'My goal is to help athletes develop their potential, challenge their limits, and keep improving in a way that is healthy, sustainable, and consistent over time.',
             experience: [
                 {
-                    title: '15+ years coaching',
-                    body: 'Across swimming, running, and triathlon, with athletes at very different stages of development.',
+                    title: '15+ Years Coaching Experience',
+                    points: [
+                        'Short- and long-course triathlon',
+                        'Draft-legal and non-drafting formats',
+                        'Swim, bike, and run coaching',
+                    ],
                 },
                 {
-                    title: 'High-performance background',
-                    body: 'Including national team and academy roles working with junior and elite triathletes.',
+                    title: 'High-Performance Coaching Background',
+                    points: [
+                        'Head Coach, National Academy of Excellence',
+                        'Head Coach, Israel U17 National Team',
+                        'Assistant Coach, Elite National Team',
+                        'Club Coach - Age-group, Junior, and Children',
+                    ],
                 },
                 {
-                    title: 'Athlete-centered approach',
-                    body: 'Structured planning, close observation, and coaching that adapts to the person in front of me.',
+                    title: 'Whole-Athlete Approach',
+                    points: [
+                        'Personalized planning',
+                        'Ongoing feedback and adjustment',
+                        'Attention to mental skills, strength and mobility, nutrition',
+                    ],
                 },
             ],
             sections: [
@@ -115,25 +128,27 @@ const messages = {
         about: {
             coachingApproach: 'Coaching approach',
             coachPortraitAlt: 'Coach Ido by the water',
-            moreAboutMe: 'More about me',
+            moreAboutMe: 'More About Me',
             introLead:
                 'My coaching combines high-performance experience with a practical understanding of real life, helping athletes train with structure, clarity, and long-term purpose.',
             pathEyebrow: 'My path',
             pathTitle:
                 'A coaching philosophy shaped by observation, learning, and real people.',
             ctaEyebrow: 'Work together',
-            ctaTitle: 'Ready to build training around your goals and your life?',
-            ctaButton: 'Contact me',
+            ctaTitle:
+                'Ready to build training around your goals and your life?',
+            ctaButton: 'Contact Me',
         },
         coaching: {
             eyebrow: 'Coaching',
             coachPortraitAlt: 'Coach Ido standing by the water',
             title: 'Structured coaching for athletes who want a clear path forward.',
             lead: 'Training should feel purposeful, adaptable, and connected to real life. The goal is steady progress you can trust, not just a harder calendar.',
-            primaryCta: 'Start the conversation',
-            secondaryCta: 'Learn about my background',
+            primaryCta: 'Start the Conversation',
+            secondaryCta: 'Learn About My Background',
             includesEyebrow: 'What coaching includes',
-            includesTitle: 'A system built around consistency, context, and feedback.',
+            includesTitle:
+                'A system built around consistency, context, and feedback.',
             pillars: [
                 {
                     title: 'Individual planning',
@@ -171,7 +186,7 @@ const messages = {
             nextTitle: 'Tell me where you are now and what you are aiming for.',
             nextLead:
                 'We can shape the right coaching setup once we understand your goals, schedule, and training history.',
-            nextButton: 'Contact me',
+            nextButton: 'Contact Me',
         },
         contact: {
             eyebrow: 'Contact',
@@ -183,13 +198,12 @@ const messages = {
                 'Coach supporting an athlete before a swim session',
             form: {
                 title: 'Free consultation request',
-                intro:
-                    'A few details are enough to understand whether the coaching fit is right.',
+                intro: 'A few details are enough to understand whether the coaching fit is right.',
                 name: 'Name',
                 email: 'Email',
                 goal: 'Primary goal',
                 message: 'Message',
-                send: 'Send request',
+                send: 'Send Request',
                 sending: 'Sending...',
                 goals: [
                     'First triathlon',
@@ -249,30 +263,30 @@ const messages = {
             LinkedIn: 'לינקדאין',
         },
         hero: {
-            eyebrow: 'המאמן עידו קצנלנבוגן',
+            eyebrow: 'עידו קצנלנבוגן - מאמן',
             title: 'אימון טריאתלון וסבולת',
-            lead: 'אימון אישי אחד על אחד, מותאם למטרות שלך, ללוח הזמנים שלך ולחיים שלך.',
+            lead: 'אימון אישי אחד על אחד, מותאם למטרות שלך, ללוח הזמנים שלך ולחיים שלך',
             cta: 'לקביעת שיחת היכרות חינם',
         },
         coachBio: {
-            name: 'המאמן עידו קצנלנבוגן',
+            name: 'עידו קצנלנבוגן',
             title: 'מאמן אישי לטריאתלון וספורט סבולת',
             summary:
-                'אני עוזר לספורטאי סבולת להתאמן עם מבנה, בהירות ומטרה ארוכת טווח.',
+                'אימון טריאתלון וסבולת בגישה אישית ומקצועית, עם ניסיון בעבודה במועדונים, באקדמיה ובנבחרות ישראל.',
             keywords: [
+                'תכנית בהתאמה אישית',
                 'ירידה לפרטים',
-                'מותאם לספורטאי/ת',
-                'מעורבות מלאה',
-                'חשיבה תהליכית',
+                'דגש על תהליך',
+                'נוכחות ומעורבות',
             ],
             homeIntro:
-                'במשך יותר מ־15 שנה אני מאמן שחייה, ריצה וטריאתלון, החל מצעדים ראשונים בספורט ועד ספורטאי נוער, עילית ובוגרים שמתאמנים למטרות משמעותיות.',
+                'אני מלווה ספורטאי סבולת במגוון גילאים ורמות, ובונה לכל מתאמן ומתאמנת תהליך אישי שמתאים למטרות, ליכולת הנוכחית ולחיים שמסביב לאימון.',
             homeCredibility:
-                'העבודה שלי נעה בין אימון מועדונים לבין תפקידי נבחרת ואקדמיה, תמיד מתוך מטרה לבנות את האימון סביב הספורטאי ולא להפך.',
+                'המטרה שלי היא לעזור לספורטאים לממש את הפוטנציאל שלהם, לאתגר את עצמם, ולהמשיך להתקדם בדרך בריאה שאפשר להתמיד בה לאורך זמן.',
             experience: [
                 {
-                    title: 'מעל 15 שנות אימון',
-                    body: 'בשחייה, ריצה וטריאתלון, עם ספורטאים בשלבים שונים מאוד של התפתחות.',
+                    title: 'מעל 15 שנות ניסיון באימון',
+                    body: 'טריאתלון בכל הרמות והגילאים, לימודד שחייה ואימון ריצה לכל מרחק מ-5 ק״מ ועד מרתון',
                 },
                 {
                     title: 'רקע הישגי',
@@ -391,8 +405,7 @@ const messages = {
             coachingSupportAlt: 'מאמן תומך בספורטאית לפני אימון שחייה',
             form: {
                 title: 'בקשה לשיחת ייעוץ חינם',
-                intro:
-                    'כמה פרטים מספיקים כדי להבין האם יש התאמה לאימון.',
+                intro: 'כמה פרטים מספיקים כדי להבין האם יש התאמה לאימון.',
                 name: 'שם',
                 email: 'אימייל',
                 goal: 'מטרה עיקרית',
@@ -410,8 +423,7 @@ const messages = {
                 invalid: 'נא לבדוק את השדות המסומנים ולנסות שוב.',
                 setupError:
                     'הטופס עדיין לא הוגדר. יש להוסיף מפתח Web3Forms כדי לאפשר שליחה.',
-                genericError:
-                    'אירעה תקלה בזמן שליחת הבקשה.',
+                genericError: 'אירעה תקלה בזמן שליחת הבקשה.',
             },
             validation: {
                 name: 'נא להזין שם.',

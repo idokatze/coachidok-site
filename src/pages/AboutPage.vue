@@ -1,10 +1,10 @@
 <template>
     <main class="about-page">
-        <section class="section about-hero">
+        <section class="section section-tight about-hero">
             <div class="container about-hero-layout">
-                <div class="about-hero-copy">
-                    <p class="about-hero-name">{{ coachBio.name }}</p>
-                    <h1>{{ coachBio.title }}</h1>
+                <div class="about-hero-intro">
+                    <h1>{{ coachBio.name }}</h1>
+                    <p class="about-hero-title">{{ coachBio.title }}</p>
                     <ul
                         class="about-hero-keywords"
                         :aria-label="$t('about.coachingApproach')"
@@ -16,30 +16,45 @@
                             {{ keyword }}
                         </li>
                     </ul>
-                    <p class="lead">{{ coachBio.summary }}</p>
-                    <p>{{ $t('about.introLead') }}</p>
                 </div>
 
-                <div class="about-hero-image-wrap">
-                    <img
-                        :src="coachPortrait"
-                        :alt="$t('about.coachPortraitAlt')"
-                    />
-                </div>
-            </div>
-        </section>
+                <div class="about-hero-side">
+                    <div class="about-hero-image-wrap">
+                        <img
+                            :src="coachPortrait"
+                            :alt="$t('about.coachPortraitAlt')"
+                        />
+                    </div>
 
-        <section class="section about-highlights-section">
-            <div class="container">
-                <div class="about-highlights">
-                    <article
-                        v-for="item in coachBio.experience"
-                        :key="item.title"
-                        class="about-highlight-card"
-                    >
-                        <h2>{{ item.title }}</h2>
-                        <p>{{ item.body }}</p>
-                    </article>
+                    <div class="about-hero-highlights">
+                        <article
+                            v-for="item in coachBio.experience"
+                            :key="item.title"
+                            class="about-highlight-card"
+                        >
+                            <h2>{{ item.title }}</h2>
+                            <ul
+                                v-if="item.points"
+                                class="about-highlight-points"
+                            >
+                                <li
+                                    v-for="point in item.points"
+                                    :key="point"
+                                >
+                                    {{ point }}
+                                </li>
+                            </ul>
+                            <p v-else>{{ item.body }}</p>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="about-hero-copy">
+                    <div class="about-hero-body">
+                        <p>{{ $t('about.introLead') }}</p>
+                        <p>{{ coachBio.homeIntro }}</p>
+                        <p>{{ coachBio.homeCredibility }}</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -104,51 +119,54 @@
 
 <style scoped>
     .about-page {
-        background:
-            radial-gradient(circle at top, rgb(8 127 163 / 8%), transparent 38%),
-            var(--clr-bg);
+        background: var(--clr-bg);
     }
 
     .about-hero {
+        background:
+            radial-gradient(circle at top, rgb(8 127 163 / 10%), transparent 38%),
+            var(--clr-surface-mist);
         padding-block-end: clamp(3rem, 6vw, 4.5rem);
     }
 
     .about-hero-layout {
         display: grid;
-        grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.95fr);
-        align-items: center;
+        grid-template-columns: minmax(16rem, 22rem) minmax(0, 1fr);
+        align-items: start;
         gap: clamp(2rem, 5vw, 4rem);
     }
 
-    .about-hero-copy {
+    .about-hero-intro {
+        grid-column: 1 / -1;
         display: grid;
-        gap: 1rem;
-        max-inline-size: 42rem;
+        gap: 0.9rem;
+        max-inline-size: 100%;
     }
 
-    .about-hero-name {
-        color: var(--clr-heading);
-        font-size: 0.95rem;
-        font-weight: 900;
-        text-transform: uppercase;
+    .about-hero-intro h1 {
+        font-size: clamp(2.35rem, 5vw, 4rem);
+        max-inline-size: 100%;
     }
 
-    .about-hero-copy h1 {
-        font-size: clamp(2.35rem, 5vw, 4.25rem);
-        max-inline-size: 13ch;
+    .about-hero-title {
+        color: var(--clr-primary-dark);
+        font-size: clamp(1rem, 2vw, 1.15rem);
+        font-weight: 800;
+        line-height: 1.4;
     }
 
     .about-hero-keywords {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, max-content));
-        gap: 0.85rem 1.5rem;
-        padding-block-end: 0.15rem;
+        grid-template-columns: repeat(4, minmax(0, max-content));
+        justify-content: start;
+        gap: 0.85rem 1.1rem;
+        padding-block-start: 0.35rem;
     }
 
     .about-hero-keywords li {
         display: inline-flex;
         align-items: center;
-        gap: 0.65rem;
+        gap: 0.5rem;
         color: var(--clr-heading);
         font-size: 0.9rem;
         font-weight: 800;
@@ -164,6 +182,14 @@
         flex: 0 0 auto;
     }
 
+    .about-hero-side {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: minmax(14rem, 22rem) minmax(0, 1fr);
+        gap: 1.25rem;
+        align-items: start;
+    }
+
     .about-hero-image-wrap {
         overflow: hidden;
         border: 1px solid color-mix(in srgb, var(--clr-primary) 14%, transparent);
@@ -174,15 +200,32 @@
 
     .about-hero-image-wrap img {
         inline-size: 100%;
-        aspect-ratio: 4 / 5;
+        aspect-ratio: 4 / 4.85;
         object-fit: cover;
-        object-position: center 20%;
+        object-position: center 16%;
     }
 
-    .about-highlights {
+    .about-hero-highlights {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 1rem;
+        gap: 0.85rem;
+        align-content: start;
+    }
+
+    .about-hero-copy {
+        grid-column: 1 / -1;
+        display: grid;
+        gap: 1.15rem;
+        max-inline-size: 100%;
+    }
+
+    .about-hero-body {
+        display: grid;
+        gap: 0.9rem;
+    }
+
+    .about-hero-body p {
+        color: var(--clr-text);
+        line-height: 1.75;
     }
 
     .about-highlight-card,
@@ -190,7 +233,7 @@
     .about-cta {
         border: 1px solid var(--clr-border);
         border-radius: var(--radius-md);
-        background: color-mix(in srgb, var(--clr-surface) 92%, transparent);
+        background: var(--clr-surface-plain);
         box-shadow: var(--shadow-nav);
     }
 
@@ -204,6 +247,29 @@
         font-size: 1.25rem;
     }
 
+    .about-highlight-points {
+        display: grid;
+        gap: 0.55rem;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    .about-highlight-points li {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: start;
+        column-gap: 0.45rem;
+        color: var(--clr-muted);
+        line-height: 1.5;
+    }
+
+    .about-highlight-points li::before {
+        content: '•';
+        color: var(--clr-primary);
+        font-weight: 900;
+    }
+
     .about-highlight-card p,
     .about-story-card p {
         color: var(--clr-muted);
@@ -214,6 +280,10 @@
         grid-template-columns: minmax(15rem, 0.6fr) minmax(0, 1.4fr);
         gap: clamp(1.5rem, 4vw, 3rem);
         align-items: start;
+    }
+
+    .about-story-section {
+        background: var(--clr-surface-tide);
     }
 
     .about-story-intro {
@@ -252,14 +322,17 @@
         padding: clamp(1.5rem, 4vw, 2rem);
     }
 
+    .about-cta-section {
+        background: var(--clr-surface-water);
+    }
+
     @media (max-width: 960px) {
         .about-hero-layout,
-        .about-story-layout,
-        .about-highlights {
+        .about-story-layout {
             grid-template-columns: 1fr;
         }
 
-        .about-hero-copy h1,
+        .about-hero-intro h1,
         .about-story-intro h2,
         .about-cta h2 {
             max-inline-size: 100%;
@@ -275,6 +348,10 @@
     }
 
     @media (max-width: 700px) {
+        .about-hero-side {
+            grid-template-columns: 1fr;
+        }
+
         .about-cta {
             flex-direction: column;
             align-items: start;

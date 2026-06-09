@@ -1,6 +1,6 @@
 <template>
     <main class="contact-page">
-        <section class="section contact-hero">
+        <section class="section section-tight contact-hero">
             <div class="container contact-layout">
                 <div class="contact-intro">
                     <p class="eyebrow">{{ $t('contact.eyebrow') }}</p>
@@ -352,10 +352,6 @@
         background:
             radial-gradient(circle at top, rgb(8 127 163 / 7%), transparent 34%),
             var(--clr-bg);
-    }
-
-    .contact-hero {
-        padding-block-start: clamp(2.5rem, 6vw, 4rem);
     }
 
     .contact-layout {

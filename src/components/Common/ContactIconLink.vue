@@ -165,8 +165,8 @@
 
     .contact-icon-tooltip {
         position: absolute;
-        inset-inline-start: 50%;
-        inset-block-start: calc(100% + 0.55rem);
+        left: 50%;
+        top: calc(100% + 0.55rem);
         z-index: 1;
         padding: 0.45rem 0.6rem;
         border-radius: var(--radius-sm);
