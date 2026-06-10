@@ -169,51 +169,55 @@ export default {
     coaching: {
         eyebrow: 'Coaching',
         coachPortraitAlt: 'Coach supporting an athlete before a swim session',
-        title: 'Coaching for triathletes and endurance athletes who want expert guidance, smarter structure, and steady long-term progress',
-        lead: 'This is for committed athletes who want more than a generic training plan. You get experienced eyes, honest feedback, and a process shaped around your goals, training history, and real-life constraints.',
+        title: 'Coaching for athletes who want a real partnership, clearer direction, and less uncertainty',
+        lead: 'Good coaching is not just about writing sessions. It is an ongoing partnership built on planning, communication, feedback, and better decision-making over time.',
         primaryCta: 'Book a Free Consultation',
         secondaryCta: 'More About Me',
         includesEyebrow: 'What coaching includes',
         includesTitle:
-            'Practical coaching support beyond a weekly schedule',
+            'What the coaching relationship actually gives you',
         pillars: [
             {
-                title: 'Personalized Planning',
-                body: 'Training is built around your race goals, current level, life schedule, and the specific demands of the event you are preparing for.',
+                title: 'A True Coaching Partnership',
+                body: 'Coaching is an ongoing working relationship, not a one-time plan. We build trust, stay in dialogue, and keep the process connected to your goals and your reality.',
             },
             {
-                title: 'Review, Feedback, and Adjustment',
-                body: 'Your plan should respond to fatigue, travel, work, family life, and training response instead of pretending every week is identical.',
+                title: 'Less Decision Fatigue',
+                body: 'I carry the load of structure, planning, and many of the training decisions, so you spend less energy second-guessing and more energy doing the work well.',
             },
             {
-                title: 'Broader Performance Support',
-                body: 'Coaching can also include work around race decisions, mental skills, strength and mobility, recovery habits, and the bigger picture behind performance.',
+                title: 'Planning at Every Level',
+                body: 'The process includes long-term direction, seasonal planning, monthly structure, weekly guidance, and sessions that serve a clear purpose inside the bigger picture.',
+            },
+            {
+                title: 'Open Communication and Adjustment',
+                body: 'Regular communication, honest feedback, and steady updates help the training respond to fatigue, travel, life demands, and how you are actually progressing.',
             },
         ],
-        processEyebrow: 'How we work',
-        processTitle: 'Simple process, clear expectations, ongoing dialogue',
+        processEyebrow: 'How the process works',
+        processTitle: 'Purposeful training, regular communication, and steady adjustment',
         steps: [
             {
                 number: '01',
-                title: 'Initial Conversation',
-                body: 'We begin with your background, current routine, racing goals, and the kind of coaching support that would actually help you most.',
+                title: 'Big-Picture Direction',
+                body: 'We begin with your background, your goals, and the season ahead so the training has a real direction instead of becoming a series of disconnected weeks.',
             },
             {
                 number: '02',
-                title: 'Training Setup',
-                body: 'I build the structure, priorities, and progression so your training has direction without becoming rigid or disconnected from real life.',
+                title: 'Week-to-Week Structure',
+                body: 'From that bigger direction, I shape the monthly and weekly structure so each session has a role and the work adds up toward the right outcome.',
             },
             {
                 number: '03',
-                title: 'Review and Adapt',
-                body: 'We keep adjusting based on feedback, training response, and the realities around the sport so the process keeps moving and keeps fitting.',
+                title: 'Communication, Feedback, and Change',
+                body: 'We stay in touch, review how the training is landing, and adjust when life, fatigue, racing, or new information changes what the week needs.',
             },
         ],
         nextEyebrow: 'Next step',
         nextTitle:
-            'Tell me what you are training for, where you are now, and what support would help most',
+            'Tell me what you are training for, where you are now, and what kind of partnership would help most',
         nextLead:
-            'Once I understand your goals, background, and current reality, we can decide whether the fit is right and what kind of coaching support makes the most sense.',
+            'Once I understand your goals, background, and current reality, we can decide whether the fit is right and what kind of coaching relationship would support you best.',
         nextButton: 'Contact Me',
     },
     contact: {
