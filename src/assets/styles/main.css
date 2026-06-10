@@ -50,8 +50,8 @@
     --hero-image-position-mobile: 58% center;
 
     /* Typography */
-    --font-main:
-        system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-main: 'Assistant', system-ui, -apple-system, BlinkMacSystemFont,
+        'Segoe UI', sans-serif;
 
     /* Layout tokens */
     --container-max: 1120px;
