@@ -1,9 +1,9 @@
 <template>
-    <main class="about-page">
+    <div class="about-page">
         <AboutHeroSection />
         <AboutStorySection />
         <AboutCtaSection />
-    </main>
+    </div>
 </template>
 
 <script>

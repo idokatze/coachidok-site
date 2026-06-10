@@ -29,25 +29,73 @@ export default {
         linkedIn: 'LinkedIn',
     },
     hero: {
-        eyebrow: 'Coach Ido Katzenellenbogen',
-        title: 'Triathlon and Endurance Coaching',
-        lead: 'Personalized one-on-one endurance coaching built around your goals, your schedule, and your life.',
+        eyebrow: 'Former National-Team Coach',
+        title: 'High-Performance Coaching Experience for Serious Endurance Goals',
+        lead: 'Work with a former national-team coach to build smarter training, make better decisions, and pursue your next goal with clearer direction.',
         cta: 'Book a Free Consultation',
+    },
+    home: {
+        proofEyebrow: 'Why Work With Me',
+        proofTitle:
+            'High-performance coaching experience, applied to your goals and your reality',
+        proofLead:
+            'I have coached national-team athletes, serious juniors, and committed age-group athletes across triathlon and endurance sport. Today I bring that same standard of planning, observation, and accountability into a personal coaching process.',
+        proofItems: [
+            {
+                value: 'Former',
+                label: 'National-team coach',
+            },
+            {
+                value: '15+',
+                label: 'Years coaching across levels',
+            },
+            {
+                value: 'Half & Full',
+                label: 'Long-course guidance and experience',
+            },
+        ],
+        audienceEyebrow: 'Who I Coach',
+        audienceTitle:
+            'Coaching built for athletes with serious goals, not generic plans',
+        aboutEyebrow: 'About Coach Ido',
+        audienceCards: [
+            {
+                title: 'Committed Age-Group Athletes',
+                body: 'Athletes training toward meaningful goals, including better structure, stronger race execution, and more confidence over half and full Ironman distance.',
+            },
+            {
+                title: 'Serious Junior Athletes',
+                body: 'Junior athletes who need experienced guidance, close observation, and a process that supports both performance and long-term development.',
+            },
+            {
+                title: 'Driven Endurance Athletes',
+                body: 'Swimmers, runners, cyclists, and triathletes who want more than a template plan and value expert judgment, feedback, and consistency.',
+            },
+        ],
     },
     coachBio: {
         name: 'Coach Ido Katzenellenbogen',
         title: 'Personal Triathlon & Endurance Coach',
         keywords: [
-            'Personalized planning',
-            'Detail-oriented',
-            'Process-driven',
-            'Hands-on support',
+            'Former national-team coach',
+            '15+ years coaching',
+            'High-performance background',
+            'Personal one-on-one process',
         ],
         homeIntro:
-            'I coach endurance athletes of all ages and levels, building training that fits their goals, current ability, and the realities of life around the sport.',
+            'I work with committed age-group athletes, serious junior athletes, and endurance athletes who want the insight, standards, and structure of high-level coaching in a format that fits real life.',
         homeCredibility:
-            'My goal is to help athletes develop their potential, challenge their limits, and keep improving in a way that is healthy, sustainable, and consistent over time.',
+            'My job is to turn experience into better decisions: clearer planning, smarter progression, and consistent work toward goals that matter, including long-course racing and long-term development.',
         experience: [
+            {
+                title: 'Past High-Performance Coaching Roles',
+                points: [
+                    'Head Coach, National Academy of Excellence in Sport',
+                    'Head Coach, Israel U17 National Team',
+                    'Assistant Coach, Israel Elite National Team',
+                    'Club Coach - Age-group, junior, and children',
+                ],
+            },
             {
                 title: '15+ Years Coaching Experience',
                 points: [
@@ -57,16 +105,7 @@ export default {
                 ],
             },
             {
-                title: 'Past High-Performance Coaching Roles',
-                points: [
-                    'Head Coach, 🇮🇱 National Academy of Excellence',
-                    'Head Coach, 🇮🇱 U17 National Team',
-                    'Assistant Coach, 🇮🇱 Elite National Team',
-                    'Club Coach - Age-group, Junior, and Children',
-                ],
-            },
-            {
-                title: 'Whole-Athlete Approach',
+                title: 'Applied to the Whole Athlete',
                 points: [
                     'Personalized planning',
                     'Ongoing feedback and adjustment',
@@ -118,7 +157,7 @@ export default {
         coachPortraitAlt: 'Coach Ido by the water',
         moreAboutMe: 'More About Me',
         introLead:
-            'My coaching combines high-performance experience with a practical understanding of real life, helping athletes train with structure, clarity, and long-term purpose.',
+            'My coaching brings high-performance experience into a personal process built around the athlete, the goal, and the realities of life outside the sport.',
         pathEyebrow: 'My path',
         pathTitle:
             'A coaching philosophy shaped by observation, learning, and real people',
@@ -130,25 +169,25 @@ export default {
     coaching: {
         eyebrow: 'Coaching',
         coachPortraitAlt: 'Coach supporting an athlete before a swim session',
-        title: 'Personal coaching for triathletes and endurance athletes who want clear direction and long-term progress',
-        lead: 'Good training is not just about harder sessions. It should fit the athlete, the goal, and the reality of life, with a clear process and steady adjustments along the way.',
+        title: 'Coaching for triathletes and endurance athletes who want expert guidance, smarter structure, and steady long-term progress',
+        lead: 'This is for committed athletes who want more than a generic training plan. You get experienced eyes, honest feedback, and a process shaped around your goals, training history, and real-life constraints.',
         primaryCta: 'Book a Free Consultation',
         secondaryCta: 'More About Me',
         includesEyebrow: 'What coaching includes',
         includesTitle:
-            'Support built around the athlete, not just the training plan',
+            'Practical coaching support beyond a weekly schedule',
         pillars: [
             {
                 title: 'Personalized Planning',
-                body: 'Training is built around your goals, current level, recovery needs, and the time you actually have available each week.',
+                body: 'Training is built around your race goals, current level, life schedule, and the specific demands of the event you are preparing for.',
             },
             {
-                title: 'Ongoing Feedback and Adjustment',
-                body: 'The plan should respond to fatigue, travel, work, family life, and strong training blocks instead of pretending every week is the same.',
+                title: 'Review, Feedback, and Adjustment',
+                body: 'Your plan should respond to fatigue, travel, work, family life, and training response instead of pretending every week is identical.',
             },
             {
-                title: 'Whole-Athlete Perspective',
-                body: 'Coaching can also include attention to mental skills, strength and mobility, recovery habits, and the broader picture around performance.',
+                title: 'Broader Performance Support',
+                body: 'Coaching can also include work around race decisions, mental skills, strength and mobility, recovery habits, and the bigger picture behind performance.',
             },
         ],
         processEyebrow: 'How we work',
@@ -157,29 +196,30 @@ export default {
             {
                 number: '01',
                 title: 'Initial Conversation',
-                body: 'We begin with your background, current routine, goals, and the kind of coaching support you are looking for.',
+                body: 'We begin with your background, current routine, racing goals, and the kind of coaching support that would actually help you most.',
             },
             {
                 number: '02',
                 title: 'Training Setup',
-                body: 'I build the structure, key priorities, and progression so your training has direction without becoming rigid or disconnected from life.',
+                body: 'I build the structure, priorities, and progression so your training has direction without becoming rigid or disconnected from real life.',
             },
             {
                 number: '03',
                 title: 'Review and Adapt',
-                body: 'We keep adjusting based on feedback, training response, and the realities around the sport so the process keeps moving forward.',
+                body: 'We keep adjusting based on feedback, training response, and the realities around the sport so the process keeps moving and keeps fitting.',
             },
         ],
         nextEyebrow: 'Next step',
-        nextTitle: 'Tell me where you are now, and where you want to go next',
+        nextTitle:
+            'Tell me what you are training for, where you are now, and what support would help most',
         nextLead:
-            'Once I understand your goals, background, and current reality, we can decide what kind of coaching support makes the most sense.',
+            'Once I understand your goals, background, and current reality, we can decide whether the fit is right and what kind of coaching support makes the most sense.',
         nextButton: 'Contact Me',
     },
     contact: {
         eyebrow: 'Contact',
-        title: 'Start with a focused coaching conversation',
-        lead: 'Tell me where you are now, what you are training for, and what kind of support would make the next block clearer.',
+        title: 'Let’s start with a simple conversation about your training and goals',
+        lead: 'Share a few details about where you are now and what you are working toward. I will get a sense of whether I can help and what kind of support makes sense.',
         contactMethods: 'Contact methods',
         copied: 'Copied',
         copyError: 'Could not copy',
@@ -192,7 +232,7 @@ export default {
             'Coach supporting an athlete before a swim session',
         form: {
             title: 'Free consultation request',
-            intro: 'A few details are enough to get a sense of how I can best support you.',
+            intro: 'A few details are enough to understand your goals and how I may be able to help.',
             name: 'Name',
             email: 'Email',
             goal: 'Primary goal',
@@ -203,7 +243,7 @@ export default {
                 'First triathlon',
                 'Improve race performance',
                 'Return to consistent training',
-                'Long-distance / endurance build',
+                'Half / full Ironman or another long-course build',
                 'Not sure yet',
             ],
             success: 'Thanks. Your request was sent successfully.',

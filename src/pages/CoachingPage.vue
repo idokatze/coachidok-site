@@ -1,10 +1,10 @@
 <template>
-    <main class="coaching-page">
+    <div class="coaching-page">
         <CoachingHeroSection />
         <CoachingPillarsSection />
         <CoachingProcessSection />
         <CoachingCtaSection />
-    </main>
+    </div>
 </template>
 
 <script>

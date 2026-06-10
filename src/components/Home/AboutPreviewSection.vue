@@ -2,6 +2,7 @@
     <section class="section section-topless about-preview-section">
         <div class="container about-preview-layout">
             <div class="about-preview-intro">
+                <p class="eyebrow">{{ $t('home.aboutEyebrow') }}</p>
                 <h2>{{ coachBio.name }}</h2>
                 <p class="about-preview-title">{{ coachBio.title }}</p>
                 <ul
@@ -76,7 +77,7 @@
         grid-column: 1 / -1;
         display: grid;
         gap: 0.9rem;
-        max-inline-size: 48rem;
+        max-inline-size: 54rem;
     }
 
     .about-preview-intro h2 {
@@ -111,7 +112,7 @@
     .about-preview-copy {
         display: grid;
         gap: 1.15rem;
-        max-inline-size: 42rem;
+        max-inline-size: 46rem;
     }
 
     .about-preview-body {
@@ -122,6 +123,13 @@
     .about-preview-body p {
         color: var(--clr-text);
         line-height: 1.75;
+    }
+
+    .about-preview-body p:first-child {
+        color: var(--clr-heading);
+        font-size: clamp(1.1rem, 2vw, 1.3rem);
+        font-weight: 700;
+        line-height: 1.6;
     }
 
     .about-preview-keywords {

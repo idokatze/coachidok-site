@@ -184,6 +184,13 @@
         line-height: 1.75;
     }
 
+    .about-hero-body p:first-child {
+        color: var(--clr-heading);
+        font-size: clamp(1.15rem, 2vw, 1.32rem);
+        font-weight: 700;
+        line-height: 1.6;
+    }
+
     .about-highlight-card {
         border: 1px solid var(--clr-border);
         border-radius: var(--radius-md);

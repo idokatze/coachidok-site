@@ -1,5 +1,5 @@
 <template>
-    <main class="contact-page">
+    <div class="contact-page">
         <section class="section section-tight contact-hero">
             <div class="container contact-layout">
                 <ContactIntroBlock />
@@ -8,7 +8,7 @@
         </section>
 
         <ContactImageBand />
-    </main>
+    </div>
 </template>
 
 <script>
