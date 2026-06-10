@@ -29,9 +29,9 @@ export default {
         linkedIn: 'LinkedIn',
     },
     hero: {
-        eyebrow: 'Former National-Team Coach',
+        eyebrow: 'High-Performance Coaching Experience',
         title: 'High-Performance Coaching Experience for Serious Endurance Goals',
-        lead: 'Work with a former national-team coach to build smarter training, make better decisions, and pursue your next goal with clearer direction.',
+        lead: 'Work with a coach whose background includes the national academy, head coaching Israel’s U17 national team, and assisting the elite national team, then apply that experience to your own goals with clearer direction.',
         cta: 'Book a Free Consultation',
     },
     home: {
@@ -39,11 +39,11 @@ export default {
         proofTitle:
             'High-performance coaching experience, applied to your goals and your reality',
         proofLead:
-            'I have coached national-team athletes, serious juniors, and committed age-group athletes across triathlon and endurance sport. Today I bring that same standard of planning, observation, and accountability into a personal coaching process.',
+            'My coaching background includes the national academy, Israel’s U17 national team, and the elite national-team environment, alongside years of work with serious juniors and committed age-group athletes. Today I bring that same standard of planning, observation, and accountability into a personal coaching process.',
         proofItems: [
             {
-                value: 'Former',
-                label: 'National-team coach',
+                value: 'National-Level',
+                label: 'Academy, U17, and elite-team experience',
             },
             {
                 value: '15+',
@@ -77,7 +77,7 @@ export default {
         name: 'Coach Ido Katzenellenbogen',
         title: 'Personal Triathlon & Endurance Coach',
         keywords: [
-            'Former national-team coach',
+            'National-level coaching background',
             '15+ years coaching',
             'High-performance background',
             'Personal one-on-one process',
@@ -118,7 +118,7 @@ export default {
                 title: 'Coaching background',
                 paragraphs: [
                     'For more than 15 years I have coached triathletes, distance runners, and swimmers of all ages, from young children taking their first steps in sport to adult athletes in their 60s, as well as junior and elite triathletes competing internationally.',
-                    'I have served as Head Triathlon Coach at the National Academy for Excellence in Sport, Head Coach of Israel’s U17 National Team, Assistant Coach of the Elite National Team, alongside my work as a club coach.',
+                    'I have served as Head Triathlon Coach at the National Academy for Excellence in Sport, Head Coach of Israel’s U17 National Team, and Assistant Coach of the Elite National Team, alongside my work as a club coach.',
                 ],
             },
             {
