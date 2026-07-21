@@ -21,7 +21,12 @@
                 <div class="about-hero-image-wrap">
                     <img
                         :src="coachPortrait"
+                        :srcset="`${coachPortraitSmall} 640w, ${coachPortrait} 1200w`"
                         :alt="$t('about.coachPortraitAlt')"
+                        decoding="async"
+                        sizes="(max-width: 760px) 92vw, 352px"
+                        width="1200"
+                        height="1200"
                     />
                 </div>
 
@@ -60,7 +65,8 @@
 </template>
 
 <script>
-    import coachPortrait from '../../assets/images/coach-portrait-lakeside.jpg'
+    import coachPortrait from '../../assets/images/coach-portrait-lakeside-1200.jpg'
+    import coachPortraitSmall from '../../assets/images/coach-portrait-lakeside-640.jpg'
     import { tm } from '../../i18n'
 
     export default {
@@ -72,6 +78,7 @@
         data() {
             return {
                 coachPortrait,
+                coachPortraitSmall,
             }
         },
     }

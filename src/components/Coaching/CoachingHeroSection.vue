@@ -19,7 +19,12 @@
             <div class="coaching-image-wrap">
                 <img
                     :src="coachPortrait"
+                    :srcset="`${coachPortraitSmall} 800w, ${coachPortrait} 1600w`"
                     :alt="$t('coaching.coachPortraitAlt')"
+                    decoding="async"
+                    sizes="(max-width: 900px) 92vw, 40vw"
+                    width="1600"
+                    height="1067"
                 />
             </div>
         </div>
@@ -27,12 +32,14 @@
 </template>
 
 <script>
-    import coachPortrait from '../../assets/images/coach-supporting-swimmer.jpg'
+    import coachPortrait from '../../assets/images/coach-supporting-swimmer-1600.jpg'
+    import coachPortraitSmall from '../../assets/images/coach-supporting-swimmer-800.jpg'
 
     export default {
         data() {
             return {
                 coachPortrait,
+                coachPortraitSmall,
             }
         },
     }

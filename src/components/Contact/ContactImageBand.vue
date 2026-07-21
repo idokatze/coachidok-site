@@ -1,16 +1,27 @@
 <template>
     <section class="contact-image-band" :aria-label="$t('contact.supportLabel')">
-        <img :src="supportImage" :alt="$t('contact.coachingSupportAlt')" />
+        <img
+            :src="supportImage"
+            :srcset="`${supportImageSmall} 800w, ${supportImage} 1600w`"
+            :alt="$t('contact.coachingSupportAlt')"
+            decoding="async"
+            loading="lazy"
+            sizes="100vw"
+            width="1600"
+            height="1067"
+        />
     </section>
 </template>
 
 <script>
-    import supportImage from '../../assets/images/coach-supporting-swimmer.jpg'
+    import supportImage from '../../assets/images/coach-supporting-swimmer-1600.jpg'
+    import supportImageSmall from '../../assets/images/coach-supporting-swimmer-800.jpg'
 
     export default {
         data() {
             return {
                 supportImage,
+                supportImageSmall,
             }
         },
     }

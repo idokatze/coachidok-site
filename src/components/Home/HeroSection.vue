@@ -1,7 +1,16 @@
 <template>
     <section class="hero-section">
         <div class="hero-background" aria-hidden="true">
-            <img src="../../assets/images/hero.png" alt="" />
+            <img
+                :src="heroLarge"
+                :srcset="`${heroSmall} 960w, ${heroLarge} 1672w`"
+                alt=""
+                decoding="async"
+                fetchpriority="high"
+                sizes="100vw"
+                width="1672"
+                height="941"
+            />
         </div>
 
         <div class="container hero-container">
@@ -21,6 +30,20 @@
         </div>
     </section>
 </template>
+
+<script>
+    import heroLarge from '../../assets/images/hero-1672.jpg'
+    import heroSmall from '../../assets/images/hero-960.jpg'
+
+    export default {
+        data() {
+            return {
+                heroLarge,
+                heroSmall,
+            }
+        },
+    }
+</script>
 
 <style scoped>
     .hero-section {

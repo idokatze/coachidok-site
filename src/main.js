@@ -4,6 +4,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import { i18nState, initLocale, setLocale, t, tm } from './i18n'
+import { applySeo } from './services/seo'
 // import store from './store'
 
 const app = createApp(App)
@@ -18,4 +19,5 @@ app.config.globalProperties.$tm = tm
 app.use(router)
 // app.use(store)
 
+router.afterEach((to) => applySeo(to.path))
 app.mount('#app')
