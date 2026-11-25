@@ -1,0 +1,23 @@
+---
+// Numbered steps of a process: a number badge, a sub-heading and a short paragraph per step.
+interface Props { steps: { number: string; title: string; body: string }[]; }
+const { steps } = Astro.props;
+---
+<ol class="steps">
+  {steps.map((step) => (
+    <li class="step">
+      <span class="step__number" aria-hidden="true">{step.number}</span>
+      <div>
+        <h3 class="card-title">{step.title}</h3>
+        <p>{step.body}</p>
+      </div>
+    </li>
+  ))}
+</ol>
+
+<style>
+  .steps { display: grid; gap: 1.5rem; max-width: var(--measure); margin: 0; padding: 0; list-style: none; }
+  .step { display: grid; grid-template-columns: auto 1fr; gap: 1rem; align-items: start; }
+  .step__number { display: inline-grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: 50%; background: var(--accent-dark); color: var(--on-color); font-size: .95rem; font-weight: 700; }
+  .step p { margin: 0; }
+</style>

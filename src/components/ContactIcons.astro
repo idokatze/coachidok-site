@@ -1,0 +1,40 @@
+---
+// A row of icon links to the ways to reach me.
+//   items:   which contacts to show (defaults to the footer set)
+//   variant: round (default — outlined circles, the footer) · tiles (filled squares in each service's colour, the contact page)
+//   class:   extra classes for the row
+import Icon from './Icon.astro';
+import { contacts } from '../site';
+import { useCopy } from '../i18n';
+interface Props { items?: typeof contacts; variant?: 'round' | 'tiles'; class?: string }
+const { items = contacts.filter((c) => c.footer), variant = 'round', class: className } = Astro.props;
+const { t } = useCopy(Astro.url.pathname);
+---
+<div class:list={['contact-icons', `contact-icons--${variant}`, className]}>
+  {items.map((c) => (
+    <a class={`contact-icons__${c.id}`} href={c.href} aria-label={t.contactMethods[c.id]} title={t.contactMethods[c.id]} {...(c.external ? { target: '_blank', rel: 'noopener' } : {})}>
+      <Icon name={c.icon} />
+    </a>
+  ))}
+</div>
+
+<style>
+  .contact-icons { display: flex; flex-wrap: wrap; gap: .6rem; }
+  .contact-icons a { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; transition: background .2s, border-color .2s, transform .2s, box-shadow .2s; }
+  .contact-icons :global(svg) { width: 1.2rem; height: 1.2rem; }
+
+  /* round: outlined circles */
+  .contact-icons--round a { border: 1px solid var(--line); border-radius: 50%; color: var(--accent-dark); }
+  .contact-icons--round a:hover { background: var(--bg); border-color: var(--accent); }
+
+  /* tiles: filled squares, each in its service's colour; icons light, except on the light WhatsApp green */
+  .contact-icons--tiles { gap: .75rem; margin-top: 1.75rem; }   /* under the intro text it follows */
+  .contact-icons--tiles a { width: 3.25rem; height: 3.25rem; border-radius: var(--radius-sm); color: var(--on-color); box-shadow: var(--shadow); }
+  .contact-icons--tiles a:hover { transform: translateY(-2px); }
+  .contact-icons--tiles :global(svg) { width: 1.4rem; height: 1.4rem; }
+  .contact-icons--tiles .contact-icons__whatsapp { background: var(--whatsapp); color: var(--whatsapp-ink); }
+  .contact-icons--tiles .contact-icons__email { background: var(--action); }
+  .contact-icons--tiles .contact-icons__phone { background: var(--ink); }
+  .contact-icons--tiles .contact-icons__trainingPeaks { background: var(--brand-trainingpeaks); }
+  .contact-icons--tiles .contact-icons__linkedIn { background: var(--brand-linkedin); }
+</style>

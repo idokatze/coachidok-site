@@ -1,0 +1,117 @@
+---
+// The home page. One file for both languages: the copy comes from src/i18n (pages/index.astro, pages/he/index.astro).
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Section from '../components/Section.astro';
+import Split from '../components/Split.astro';
+import Button from '../components/Button.astro';
+import TextLink from '../components/TextLink.astro';
+import ReasonList from '../components/ReasonList.astro';
+import { site, localize } from '../site';
+import { useCopy } from '../i18n';
+import { seo } from '../i18n/seo';
+
+const { lang, t } = useCopy(Astro.url.pathname);
+const page = seo[lang].home;
+
+// Structured data for search engines: who the site is about and the service (home page only)
+const siteUrl = Astro.site!.href.replace(/\/$/, '');
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${siteUrl}/#ido-katzenellenbogen`,
+      name: site.fullName,
+      alternateName: site.name,
+      url: `${siteUrl}/`,
+      image: `${siteUrl}/og-hero.jpg`,
+      jobTitle: 'Personal Triathlon & Endurance Coach',
+      knowsAbout: ['Triathlon coaching', 'Endurance coaching', 'Junior athlete development', 'Long-course triathlon', 'Swimming', 'Cycling', 'Running'],
+      sameAs: [site.trainingPeaks, site.linkedIn],
+    },
+    {
+      '@type': 'Service',
+      '@id': `${siteUrl}/#coaching-service`,
+      name: 'Personal Triathlon & Endurance Coaching',
+      serviceType: 'Triathlon and endurance coaching',
+      url: `${siteUrl}/coaching`,
+      areaServed: 'Worldwide',
+      availableChannel: { '@type': 'ServiceChannel', serviceUrl: `${siteUrl}/coaching`, serviceLocation: { '@type': 'VirtualLocation', url: `${siteUrl}/coaching` } },
+      provider: { '@id': `${siteUrl}/#ido-katzenellenbogen` },
+    },
+  ],
+};
+---
+<Base title={page.title} description={page.description}>
+  <script is:inline type="application/ld+json" slot="head" set:html={JSON.stringify(structuredData)} />
+
+  <PageHeader hero cover title={t.hero.title} lead={t.hero.lead} image="/images/hero-start-line.jpg" imageWidth={2576} imageHeight={1449}>
+    <div class="btn-row">
+      <Button href={localize('/contact', lang)} arrow>{t.hero.cta}</Button>
+    </div>
+  </PageHeader>
+
+  {/* "Why train with Ido", with the portrait — English for now; the Hebrew page keeps the two previous sections until it has its own copy */}
+  {lang === 'en' ? (
+    <Section>
+      <Split image="/images/coach-portrait-lakeside-1200.jpg" imageWidth={1200} imageHeight={1200} imageAlt={t.about.coachPortraitAlt}>
+        <h2 class="section-title">{t.home.bringTitle}</h2>
+        <ReasonList items={t.home.bringItems} />
+        <div class="btn-row">
+          <Button variant="ghost" href={localize('/about', lang)} arrow>{t.about.moreAboutMe}</Button>
+        </div>
+      </Split>
+    </Section>
+  ) : (
+    <>
+    <Section soft eyebrow={t.home.proofEyebrow} title={t.home.proofTitle} lead={t.home.proofLead}>
+      <div class="card-grid stats">
+        {t.home.proofItems.map((item) => (
+          <div class="card">
+            <p class="stat__value">{item.value}</p>
+            <p>{item.label}</p>
+          </div>
+        ))}
+      </div>
+    </Section>
+    <Section>
+      <Split image="/images/coach-portrait-lakeside-1200.jpg" imageWidth={1200} imageHeight={1200} imageAlt={t.about.coachPortraitAlt}>
+        <p class="eyebrow">{t.home.aboutEyebrow}</p>
+        <h2 class="about__name">{t.coachBio.name}</h2>
+        <p class="role">{t.coachBio.title}</p>
+        <ul class="facts" aria-label={t.about.coachingApproach}>
+          {t.coachBio.keywords.map((k) => <li>{k}</li>)}
+        </ul>
+        <p class="about__intro">{t.coachBio.homeIntro}</p>
+        <p>{t.coachBio.homeCredibility}</p>
+        <div class="btn-row">
+          <Button variant="ghost" href={localize('/about', lang)} arrow>{t.about.moreAboutMe}</Button>
+        </div>
+      </Split>
+    </Section>
+    </>
+  )}
+
+  <Section soft eyebrow={t.home.audienceEyebrow} title={t.home.audienceTitle}>
+    <div class="card-grid">
+      {t.home.audienceCards.map((card) => (
+        <div class="card">
+          <h3 class="card-title">{card.title}</h3>
+          <p>{card.body}</p>
+        </div>
+      ))}
+    </div>
+    <div class="section-note">
+      <p>{t.home.audienceNext}</p>
+      <TextLink href={`${localize('/coaching', lang)}#who-i-coach`}>{t.home.audienceNextLink}</TextLink>
+    </div>
+  </Section>
+</Base>
+
+<style>
+  /* TEMPORARY — only the Hebrew page's previous sections use these; they go with those sections when the Hebrew copy arrives */
+  .stat__value { margin: 0 0 .35rem; color: var(--accent-dark); font-size: clamp(1.5rem, 3vw, 1.9rem); font-weight: 700; line-height: 1.15; }
+  .stats .card p:last-child { margin: 0; }
+  .about__name { margin-bottom: 0; }
+</style>

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://coachidok.com/sitemap.xml
+Sitemap: https://coachidok.com/sitemap-index.xml

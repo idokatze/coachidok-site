@@ -1,0 +1,21 @@
+---
+// The Contact page. One file for both languages: the copy comes from src/i18n (pages/contact.astro, pages/he/contact.astro).
+// Title only, no photo (the site's rule for the contact page): title, intro and the contact tiles on one side, the form beside them.
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import ContactIcons from '../components/ContactIcons.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { contacts } from '../site';
+import { useCopy } from '../i18n';
+import { seo } from '../i18n/seo';
+
+const { lang, t } = useCopy(Astro.url.pathname);
+const page = seo[lang].contact;
+---
+<Base title={page.title} description={page.description}>
+  <PageHeader title={t.contact.title} lead={t.contact.lead}>
+    <ContactIcons items={contacts} variant="tiles" />
+    <ContactForm slot="aside" />
+  </PageHeader>
+</Base>
+

@@ -1,0 +1,75 @@
+---
+// Assistant, self-hosted (npm @fontsource/assistant): the four weights the site uses, Latin + Hebrew, served from /_astro
+import '@fontsource/assistant/400.css';
+import '@fontsource/assistant/500.css';
+import '@fontsource/assistant/600.css';
+import '@fontsource/assistant/700.css';
+import '../styles/global.css';
+// The font files the first screen needs, fetched right away (preload) so the text is drawn in Assistant from the start
+// instead of a fallback font that is swapped a moment later (the "jump" on refresh and between pages).
+import latin400 from '@fontsource/assistant/files/assistant-latin-400-normal.woff2?url';
+import latin500 from '@fontsource/assistant/files/assistant-latin-500-normal.woff2?url';
+import latin600 from '@fontsource/assistant/files/assistant-latin-600-normal.woff2?url';
+import latin700 from '@fontsource/assistant/files/assistant-latin-700-normal.woff2?url';
+import hebrew400 from '@fontsource/assistant/files/assistant-hebrew-400-normal.woff2?url';
+import hebrew500 from '@fontsource/assistant/files/assistant-hebrew-500-normal.woff2?url';
+import hebrew600 from '@fontsource/assistant/files/assistant-hebrew-600-normal.woff2?url';
+import hebrew700 from '@fontsource/assistant/files/assistant-hebrew-700-normal.woff2?url';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site, cleanPath, basePath, localize, langs } from '../site';
+import { useCopy } from '../i18n';
+
+interface Props {
+  title: string;         // full <title> — from seo.* in the copy
+  description: string;
+  image?: string;
+  noindex?: boolean;     // pages search engines should skip (404): no index, no language alternates
+}
+const { title, description, image = '/og-hero.jpg', noindex = false } = Astro.props;
+const { lang, t, dir } = useCopy(Astro.url.pathname);
+const canonical = new URL(cleanPath(Astro.url.pathname), Astro.site);
+const ogImage = new URL(image, Astro.site);
+const base = basePath(Astro.url.pathname);
+// English pages need the Latin files; Hebrew pages the Hebrew ones. Each also needs the other alphabet's menu (500) and
+// button (600) weights: the header sizes its links and contact button by the label in both languages, and the brand name is English.
+const fonts = lang === 'he'
+  ? [hebrew400, hebrew500, hebrew600, hebrew700, latin500, latin600, latin700]
+  : [latin400, latin500, latin600, latin700, hebrew500, hebrew600];
+---
+<!doctype html>
+<html lang={lang} dir={dir}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {fonts.map((href) => <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />)}
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex ? <meta name="robots" content="noindex" /> : (
+      <>
+        {langs.map((l) => <link rel="alternate" hreflang={l} href={new URL(localize(base, l), Astro.site)} />)}
+        <link rel="alternate" hreflang="x-default" href={new URL(base, Astro.site)} />
+      </>
+    )}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={lang === 'he' ? 'he_IL' : 'en_US'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#10232d" />
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{t.app.skipToContent}</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

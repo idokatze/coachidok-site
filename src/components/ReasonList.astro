@@ -1,0 +1,19 @@
+---
+// Scannable list: one item per row, hairline between rows, dot marker. One column at reading width on every screen:
+// items differ in length, and two columns left uneven rows and an empty cell.
+// Each item: a bold label (what the eye lands on when scanning) and one plain line after it.
+// Same pattern as idokatze.com's ReasonList, with the label added.
+interface Props { items: { label: string; text: string }[]; }
+const { items } = Astro.props;
+---
+<ul class="reasons">
+  {items.map((item) => <li><strong>{item.label}</strong> – {item.text}</li>)}
+</ul>
+
+<style>
+  /* marker: an inline box with vertical-align: middle — centred on the letters by the font's metrics (see .facts in global.css) */
+  .reasons { display: grid; max-width: var(--measure); margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+  .reasons li { margin: 0; padding: .95rem 0; padding-inline-start: 1.6rem; text-indent: -1.6rem; border-bottom: 1px solid var(--line); line-height: 1.5; }
+  .reasons li::before { content: ""; display: inline-block; vertical-align: middle; width: .5rem; height: .5rem; margin-inline-end: 1.1rem; border-radius: 50%; background: var(--accent); }
+  .reasons strong { color: var(--ink); font-weight: 700; }
+</style>

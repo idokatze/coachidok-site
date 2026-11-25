@@ -1,0 +1,63 @@
+---
+import ContactIcons from './ContactIcons.astro';
+import goat from '../assets/baby-goat.svg?raw';
+import { site, nav, localize } from '../site';
+import { useCopy } from '../i18n';
+
+const { lang, t } = useCopy(Astro.url.pathname);
+const year = new Date().getFullYear();
+const links = nav.filter((l) => l.href !== '/');
+---
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <div class="footer__name">{site.name}</div>
+        <p class="footer__tag">{site.tagline}</p>
+      </div>
+      <ContactIcons />
+    </div>
+
+    <nav aria-label={t.footer.nav}>
+      <ul class="footer__nav">{links.map((l) => <li><a href={localize(l.href, lang)}>{t.header.nav[l.key]}</a></li>)}</ul>
+    </nav>
+
+    <div class="footer__bottom">
+      <span class="footer__company"><span class="footer__goat" aria-hidden="true" set:html={goat} /><span dir="ltr">© {year} {site.company}</span></span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer { padding-block: 2.5rem 1.5rem; background: var(--bar); color: var(--bar-text); font-size: .95rem; }
+  .footer a { color: var(--bar-text); text-decoration: none; }
+  /* a narrower frame than the page, with a wider side margin that grows with the screen */
+  .wrap { width: min(100% - 2 * clamp(var(--gutter), 6vw, 4rem), 60rem); }
+  .footer a:hover { color: var(--bar-ink); }
+
+  .footer__top { display: grid; gap: 1.25rem; }
+  .footer__name { color: var(--bar-ink); font-size: 1.2rem; font-weight: 700; }
+  .footer__tag { margin: .15rem 0 0; color: var(--bar-text); }
+
+  .footer__nav { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin: 1.75rem 0 0; padding: 1.25rem 0 0; border-top: 1px solid var(--bar-line); list-style: none; }
+
+  .footer__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .5rem 1.25rem; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--bar-line); color: var(--bar-text); font-size: .85rem; }
+  .footer__company { display: inline-flex; align-items: center; gap: .4rem; }
+  .footer__goat { display: inline-flex; color: var(--bar-ink); }
+  .footer__goat :global(svg) { width: 1.5rem; height: 1.5rem; }
+
+  /* phones/tablets: one centred column */
+  @media (max-width: 819px) {
+    .footer__top { justify-items: center; text-align: center; }
+    .footer__top :global(.contact-icons) { justify-content: center; }
+    .footer__nav { justify-content: center; }
+    .footer__bottom { flex-direction: column; text-align: center; }
+  }
+  @media (min-width: 820px) {
+    .footer__top { grid-template-columns: 1fr auto; align-items: center; }
+    .footer__nav { justify-content: flex-start; column-gap: 2rem; }   /* links grouped at the start, under the name — only three, so spreading them edge to edge left wide gaps */
+  }
+  /* contact icons on the dark bar */
+  .footer :global(.contact-icons a) { border-color: var(--bar-line); color: var(--bar-ink); }
+  .footer :global(.contact-icons a:hover) { background: var(--bar-tint); border-color: var(--bar-accent); }
+</style>

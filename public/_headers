@@ -1,0 +1,9 @@
+# Security headers for every response (Cloudflare Pages reads this file).
+# The Content-Security-Policy is a <meta> tag in the pages themselves (astro.config.mjs → security.csp).
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Strict-Transport-Security: max-age=31536000
+  Cross-Origin-Opener-Policy: same-origin

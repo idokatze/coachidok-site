@@ -1,0 +1,23 @@
+---
+// Text beside a photo inside a section: photo above on phones, beside the text on desktop.
+// The photo is shown whole, never cropped — the layout adapts to it (same rule as PageHeader).
+//   imageFirst: photo on the start side on desktop (left in English, right in Hebrew)
+interface Props { image: string; imageAlt?: string; imageWidth: number; imageHeight: number; imageFirst?: boolean; }
+const { image, imageAlt = '', imageWidth, imageHeight, imageFirst = false } = Astro.props;
+---
+<div class:list={['split', { 'split--image-first': imageFirst }]}>
+  <div class="split__text"><slot /></div>
+  <img class="split__img" src={image} width={imageWidth} height={imageHeight} alt={imageAlt} loading="lazy" decoding="async" />
+</div>
+
+<style>
+  .split { display: grid; gap: 1.5rem; align-items: center; }
+  .split__img { order: -1; width: 100%; height: auto; border-radius: var(--radius); }
+  .split__text > :global(:last-child) { margin-bottom: 0; }
+  @media (min-width: 820px) {
+    .split { grid-template-columns: 1.2fr 1fr; gap: 3rem; }
+    .split__img { order: 0; }
+    .split--image-first { grid-template-columns: 1fr 1.2fr; }
+    .split--image-first .split__img { order: -1; }
+  }
+</style>

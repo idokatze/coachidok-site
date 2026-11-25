@@ -1,0 +1,35 @@
+---
+// The one button for the whole site. Renders a link when `href` is given, otherwise a <button>.
+//   variant: primary (orange) · whatsapp (green) · ghost (outline, for "read more") · light (on dark backgrounds)
+//   size:    md (default) · sm (header)
+//   icon:    optional icon before the label;  arrow: an arrow after the label that nudges on hover (points forward in both languages)
+// Styles live in global.css (.btn …) because every page uses them.
+import type { HTMLAttributes } from 'astro/types';
+import Icon from './Icon.astro';
+import { langOf, type IconName } from '../site';
+
+type Props = {
+  href?: string;
+  variant?: 'primary' | 'whatsapp' | 'ghost' | 'light';
+  size?: 'md' | 'sm';
+  icon?: IconName;
+  arrow?: boolean;
+  external?: boolean;
+  type?: 'button' | 'submit';
+  class?: string;
+} & Omit<HTMLAttributes<'a'>, 'class' | 'href' | 'type'>;
+
+const { href, variant = 'primary', size = 'md', icon, arrow = false, external = false, type = 'button', class: className, ...rest } = Astro.props;
+const classes = ['btn', `btn--${variant}`, { 'btn--sm': size === 'sm' }, className];
+const ext = external ? { target: '_blank', rel: 'noopener' } : {};
+const arrowChar = langOf(Astro.url.pathname) === 'he' ? '←' : '→';
+---
+{href ? (
+  <a class:list={classes} href={href} {...ext} {...rest}>
+    {icon && <Icon name={icon} />}<slot />{arrow && <span class="btn__arrow" aria-hidden="true">{arrowChar}</span>}
+  </a>
+) : (
+  <button class:list={classes} type={type} {...(rest as HTMLAttributes<'button'>)}>
+    {icon && <Icon name={icon} />}<slot />{arrow && <span class="btn__arrow" aria-hidden="true">{arrowChar}</span>}
+  </button>
+)}

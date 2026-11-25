@@ -1,0 +1,148 @@
+---
+import Icon from './Icon.astro';
+import Button from './Button.astro';
+import goat from '../assets/baby-goat.svg?raw';
+import { site, nav, basePath, localize } from '../site';
+import { useCopy, getCopy } from '../i18n';
+
+const { lang, t, dir } = useCopy(Astro.url.pathname);
+// Labels that keep one size in both languages: each is laid over the same label in the other language (invisible),
+// so it is always as wide as the longer of the two — the contact button and the menu links don't change size on switching.
+const otherCopy = getCopy(lang === 'en' ? 'he' : 'en');
+const path = basePath(Astro.url.pathname);   // the page's address without /he
+const current = (href: string) => (path === href ? 'page' : undefined);
+const mainNav = nav.filter((item) => item.href !== '/contact');   // contact is the button, on every screen size
+const langs = [
+  { id: 'en', label: t.header.locale.en, title: 'English' },
+  { id: 'he', label: t.header.locale.he, title: 'עברית' },
+] as const;
+---
+<header class="header">
+  <!-- The bar keeps one layout in both languages (name on the left; contact, language switch and menu on the right),
+       so nothing moves when switching languages: the switch sits next to the fixed-size menu button (or at the edge on desktop),
+       so the contact button's label length doesn't push it. Only the order of the menu links follows the reading direction. -->
+  <div class="wrap header__inner" dir="ltr">
+    <a class="brand" href={localize('/', lang)}>
+      <span class="brand__mark" aria-hidden="true" set:html={goat} />
+      <span class="brand__text"><span class="brand__name">{site.name}</span><span class="brand__sub">{site.subtitle}</span></span>
+    </a>
+    <nav class="nav" dir={dir} aria-label={t.header.primaryNav}>
+      {mainNav.map((item) => (
+        <a href={localize(item.href, lang)} aria-current={current(item.href)}>
+          <span class="same-width"><span>{t.header.nav[item.key]}</span><span class="same-width__other" aria-hidden="true">{otherCopy.header.nav[item.key]}</span></span>
+        </a>
+      ))}
+    </nav>
+    <div class="header__actions">
+      <Button class="header-cta" href={localize('/contact', lang)} size="sm" aria-current={current('/contact')}><span class="same-width"><span>{t.header.nav.contact}</span><span class="same-width__other" aria-hidden="true">{otherCopy.header.nav.contact}</span></span></Button>
+      <div class="lang" role="group" aria-label={t.common.localeToggle}>
+        {langs.map((l) => <a href={localize(path, l.id)} hreflang={l.id} lang={l.id} title={l.title} aria-current={l.id === lang ? 'true' : undefined}>{l.label}</a>)}
+      </div>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-panel" aria-label={t.header.menu}>
+        <Icon name="menu" class="nav-toggle__open" />
+        <Icon name="close" class="nav-toggle__close" />
+      </button>
+    </div>
+  </div>
+  <nav class="nav-panel" id="nav-panel" aria-label={t.header.menu}>
+    <div class="wrap">
+      {mainNav.map((item) => <a href={localize(item.href, lang)} aria-current={current(item.href)}>{t.header.nav[item.key]}</a>)}
+    </div>
+  </nav>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>('.header');
+  const toggle = document.querySelector<HTMLButtonElement>('.nav-toggle');
+  const panel = document.getElementById('nav-panel');
+
+  // Hairline + shadow under the header once the page has scrolled
+  const onScroll = () => header?.classList.toggle('is-scrolled', window.scrollY > 8);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Mobile menu
+  const setPanel = (open: boolean) => {
+    toggle?.setAttribute('aria-expanded', String(open));
+    panel?.toggleAttribute('data-open', open);
+  };
+  toggle?.addEventListener('click', () => setPanel(toggle.getAttribute('aria-expanded') !== 'true'));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setPanel(false); });
+</script>
+
+<style>
+  .header {
+    position: sticky; top: 0; z-index: 20;
+    background: var(--bar); border-bottom: 1px solid transparent;
+    transition: border-color .25s, box-shadow .25s;
+  }
+  /* same colour always; once scrolled (or the menu is open) a hairline + soft shadow separate it from the page */
+  .header.is-scrolled, .header:has(.nav-panel[data-open]) { border-bottom-color: var(--bar-line); box-shadow: 0 4px 16px var(--tint); }
+  .header__inner { display: flex; align-items: center; justify-content: space-between; gap: .75rem; min-height: var(--header-h); }
+
+  .brand { display: inline-flex; align-items: center; gap: .55rem; color: var(--bar-ink); text-decoration: none; }
+  .brand:hover { color: var(--bar-ink); }
+  .brand__mark { display: inline-flex; color: var(--bar-accent); }
+  .brand__mark :global(svg) { width: 2rem; height: 2rem; }
+  .brand__text { display: grid; line-height: 1.15; }
+  .brand__name { font-size: 1.15rem; font-weight: 700; }
+  .brand__sub { color: var(--bar-text); font-size: .8rem; font-weight: 600; }
+
+  .header__actions { display: flex; align-items: center; gap: .5rem; }
+  /* language switch: a two-way toggle that stays in place; only the highlight moves */
+  .lang { display: inline-flex; gap: 2px; padding: 3px; border: 1px solid var(--bar-line); border-radius: var(--radius-pill); }
+  .lang a { display: inline-grid; place-items: center; min-width: 2.5rem; height: 2.25rem; padding-inline: .5rem; border-radius: var(--radius-pill); color: var(--bar-text); font-size: .9rem; font-weight: 600; text-decoration: none; transition: background .2s, color .2s; }
+  .lang a:hover { background: var(--bar-tint); color: var(--bar-ink); }
+  .lang a[aria-current] { background: var(--bar-line); color: var(--bar-ink); }
+  :global(.header-cta[aria-current="page"]) { box-shadow: 0 0 0 3px var(--bar-line); }
+
+  /* Desktop nav: same weight for every item (so nothing shifts); hover grows a light underline,
+     the current page has a full accent underline — like the text link */
+  .nav { display: none; gap: .1rem; }
+  .nav a { position: relative; padding: .5rem .75rem; color: var(--bar-text); font-weight: 500; white-space: nowrap; text-decoration: none; transition: color .2s; }
+  .nav a::after { content: ""; position: absolute; inset-inline: .75rem; bottom: .5rem; height: 2px; border-radius: 2px; background: var(--bar-line); transform: scaleX(0); transition: transform .25s; }
+  .nav a:hover { color: var(--bar-ink); }
+  .nav a:hover::after { transform: scaleX(1); }
+  .nav a[aria-current="page"] { color: var(--bar-ink); }
+  .nav a[aria-current="page"]::after { background: var(--bar-accent); transform: scaleX(1); }
+
+  /* mobile menu */
+  .nav-toggle { flex: none; display: inline-grid; place-items: center; width: 2.75rem; height: 2.75rem; margin-inline-end: -.5rem; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--bar-ink); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .nav-toggle:hover, .nav-toggle[aria-expanded="true"] { background: var(--bar-tint); }
+  .nav-toggle :global(svg) { width: 1.5rem; height: 1.5rem; }
+  .nav-toggle :global(.nav-toggle__close), .nav-toggle[aria-expanded="true"] :global(.nav-toggle__open) { display: none; }
+  .nav-toggle[aria-expanded="true"] :global(.nav-toggle__close) { display: block; }
+  /* Mobile menu panel: the bar's colour, a hairline under the header separates it */
+  .nav-panel { display: none; border-top: 1px solid var(--bar-line); background: var(--bar); box-shadow: 0 12px 24px var(--tint); }
+  .nav-panel a { display: block; padding: 1rem 0; border-bottom: 1px solid var(--bar-line); color: var(--bar-ink); font-size: 1.15rem; font-weight: 500; text-decoration: none; }
+  .nav-panel a:last-child { border-bottom: 0; }
+  .nav-panel a[aria-current="page"] { color: var(--bar-accent); font-weight: 700; }
+  .nav-panel[data-open] { display: block; }
+
+  /* phones: the subtitle goes, so name, language, contact and menu fit on one line */
+  .brand__name { white-space: nowrap; }
+  /* a label stacked on its other-language twin (hidden): the box takes the wider of the two */
+  .same-width { display: inline-grid; }
+  .same-width > * { grid-area: 1 / 1; text-align: center; }
+  .same-width__other { visibility: hidden; }
+  /* phones: everything a size smaller, so name, contact, switch and menu fit on one line in both languages */
+  @media (max-width: 639px) {
+    .header__inner { gap: .4rem; }
+    .header__actions { gap: .35rem; }
+    .brand { gap: .4rem; }
+    .brand__mark :global(svg) { width: 1.6rem; height: 1.6rem; }
+    .brand__name { font-size: 1.05rem; }
+    .brand__sub { display: none; }
+    .lang a { min-width: 1.9rem; height: 2rem; padding-inline: .3rem; font-size: .85rem; }
+    :global(.header-cta.btn--sm) { padding: .4rem .8rem; font-size: .9rem; }
+    .nav-toggle { width: 2.5rem; height: 2.5rem; }
+  }
+
+  @media (min-width: 820px) {
+    /* desktop: name at the start, nav in the middle, language + contact at the end */
+    .header__inner { display: grid; grid-template-columns: 1fr auto 1fr; }
+    .nav { display: flex; }
+    .header__actions { justify-self: end; }
+    .nav-toggle, .nav-panel, .nav-panel[data-open] { display: none; }
+  }
+</style>

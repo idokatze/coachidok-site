@@ -1,0 +1,25 @@
+---
+// One content band. Every page is a stack of these; `soft` alternates the background.
+//   eyebrow: small label above the title;  lead: the paragraph right under the title (plain body text)
+//   prose:   narrows the text to a comfortable reading width
+interface Props {
+  title?: string;
+  eyebrow?: string;
+  lead?: string;
+  soft?: boolean;
+  prose?: boolean;
+  id?: string;
+  class?: string;
+}
+const { title, eyebrow, lead, soft = false, prose = false, id, class: className } = Astro.props;
+---
+<section id={id} class:list={['section', { 'section--soft': soft }, className]}>
+  <div class="wrap">
+    <div class:list={{ prose }}>
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      {title && <h2 class="section-title">{title}</h2>}
+      {lead && <p class="section-lead">{lead}</p>}
+      <slot />
+    </div>
+  </div>
+</section>

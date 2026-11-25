@@ -1,0 +1,245 @@
+/* =====================================================================
+   global.css — what the whole site shares.
+
+   Here: design tokens, base element styles, layout (wrap, section bands,
+   reading width) and the few patterns used across many components
+   (buttons, text link, eyebrow, facts list, card).
+
+   Everything else is styled inside its own component or page, in a
+   <style> block at the bottom of the .astro file. Astro scopes those
+   styles to that file and bundles all CSS together at build time.
+
+   The same system as idokatze.com: same token names, same components,
+   same rules. Only the token values (colours, font) differ.
+
+   Both directions: the site is English (ltr) and Hebrew (rtl). Use
+   logical properties (margin-inline-start, inset-inline-end…) so every
+   rule works in both; the few things that must flip (arrows) use [dir="rtl"].
+
+   Breakpoints (CSS can't use variables in media queries, so they are
+   written out — keep to these):
+     phone   ≤ 639px     (max-width: 639px)
+     tablet  ≥ 640px     (min-width: 640px)
+     desktop ≥ 820px     (min-width: 820px)
+     wide    ≥ 1000px    (min-width: 1000px)
+   Mobile first: base rules are for phones, media queries add to them.
+   ===================================================================== */
+
+
+/* ---------- 1. Tokens ---------- */
+:root {
+  /* colour — water and race-day palette, no white anywhere */
+  --bg: #f1f7f8;            /* page background (mist) */
+  --surface: #e3eff2;       /* cards, inputs, footer — a step darker than the page */
+  --surface-soft: #dcecf0;  /* alternating "soft" section bands */
+  --light-hover: #cfe5eb;   /* hover background of the light buttons (ghost, light) */
+  --line: #c4dce2;          /* borders and hairlines */
+  --ink: #10232d;           /* headings */
+  --text: #314653;          /* body text */
+  --muted: #4f6470;         /* meta, captions — dark enough for 4.5:1 on every background */
+  --on-color: #f1f7f8;      /* text on dark/coloured backgrounds (mist, not white) */
+  --accent: #06688a;        /* water blue — links, heading marks, list markers (4.5:1+ on every background) */
+  --accent-dark: #064b63;   /* footer/CTA band, text on light buttons */
+  --accent-hover: #053d51;
+  --accent-soft: #d3e9f0;   /* light tint behind active nav items */
+  --accent-border: rgb(6 104 138 / 40%);
+  --accent-ring: rgb(6 104 138 / 12%);
+  --action: #b83d1e;        /* race-day orange — the primary button (on-color text 5.2:1) */
+  --action-hover: #a8361a;
+  --whatsapp: #25d366;
+  --whatsapp-hover: #178f45;
+  --whatsapp-ink: #10351e;  /* dark text on a green background */
+  --brand-trainingpeaks: #005fba;   /* contact tiles (ContactIcons tiles) */
+  --brand-linkedin: #0a66c2;
+  --bar: #10232d;                       /* header and footer bars */
+  --bar-ink: #f1f7f8;                   /* name, links on the bar */
+  --bar-text: #c3d5dc;                  /* secondary text on the bar */
+  --bar-accent: #9fd3e3;                /* current page, marks on the bar */
+  --bar-line: rgb(241 247 248 / 14%);   /* hairlines on the bar */
+  --bar-tint: rgb(241 247 248 / 8%);    /* hover background on the bar */
+  --cover: #142a36;                     /* home hero (PageHeader cover): the band behind the text */
+  --cover-shade: rgb(20 42 54 / 80%);   /* the same colour over the photo, where text sits on it */
+  --cover-text: #dbe8ec;                /* hero body text on the dark band */
+  --cover-eyebrow: #9fd3e3;             /* hero eyebrow on the dark band */
+  --success: #2f6b3a;
+  --error: #a33a2a;
+  --tint: rgb(16 35 45 / 6%);      /* subtle hover background */
+  --hairline: rgb(16 35 45 / 8%);  /* header divider */
+
+  /* type */
+  --font: 'Assistant', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;   /* Assistant is self-hosted: imported in Base.astro */
+  --fs-hero: clamp(2rem, 6vw, 3.25rem);     /* home headline only */
+  --fs-title: clamp(1.9rem, 5vw, 3.1rem);   /* page title (h1) */
+  --fs-h2: clamp(1.45rem, 3vw, 1.95rem);    /* section headings */
+  --fs-h3: 1.2rem;
+  --fs-h4: .9rem;                           /* eyebrow label */
+  --fs-body: 1.0625rem;
+  --fs-small: .9rem;                        /* dates, meta */
+  --measure: 40rem;                         /* max line length for reading */
+
+  /* space & shape */
+  --wrap: 68rem;                                /* page container */
+  --gutter: 1rem;                               /* side margin on phones */
+  --space-top: clamp(1.5rem, 3.5vw, 2.5rem);    /* header → page title */
+  --space-head: clamp(1.25rem, 3vw, 2rem);      /* page title block → content */
+  --space-section: clamp(2.5rem, 6vw, 4rem);    /* inside every section band, bottom */
+  --space-section-top: clamp(1.75rem, 4vw, 2.75rem);   /* inside every section band, top: less than the bottom so the heading sits close to the band's edge */
+  --header-h: 4.25rem;
+  --radius: 14px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+  --shadow: 0 1px 2px var(--tint), 0 8px 24px var(--tint);
+}
+
+
+/* ---------- 2. Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 1rem); }   /* in-page links (#who-i-coach) land below the sticky header */
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: var(--fs-body);
+  line-height: 1.7;
+  color: var(--text);
+  background: var(--bg);
+  display: flex; flex-direction: column; min-height: 100dvh;   /* the footer stays at the bottom on short pages (404) */
+}
+main { flex: 1; }
+img { display: block; max-width: 100%; height: auto; }
+svg { flex: none; }
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { color: var(--accent-dark); }
+/* Heading levels — each one looks different in kind, not just in size (defined here only, never per page):
+     h1  page title            h2  section title (big, dark)
+     h3  sub-heading           dark, with an accent line under it as long as the text
+     h4  eyebrow label         small, accent colour, right above what it labels
+   Named variants: .card-title — the title of a card: plain, no line.
+                   .eyebrow    — an h4 look-alike for a label that sits above a heading (not a heading itself). */
+h1, h2, h3, h4 { margin: 0 0 .6em; color: var(--ink); font-weight: 700; line-height: 1.25; letter-spacing: -0.01em; }
+h1 { font-size: var(--fs-title); }
+h2 { font-size: var(--fs-h2); }
+h3 { width: fit-content; max-width: 100%; margin-bottom: .8em; font-size: var(--fs-h3); }   /* fit-content: the line below is as long as the words */
+h3::after { content: ""; display: block; height: 3px; margin-top: .45rem; border-radius: 2px; background: var(--accent); }
+h4, .eyebrow { margin: 0 0 .3em; color: var(--accent-dark); font-size: var(--fs-h4); font-weight: 700; letter-spacing: .06em; line-height: 1.4; text-transform: uppercase; }
+/* spacing between content and the next heading inside reading text */
+* + h3 { margin-top: 1.9em; }
+* + h4 { margin-top: 1.5em; }
+p { margin: 0 0 1.1em; }
+blockquote { margin: 1.6em 0; padding-inline-start: 1.2em; border-inline-start: 3px solid var(--accent); color: var(--ink); font-size: 1.15em; }
+hr { margin: 1.5rem 0; border: 0; border-top: 1px solid var(--accent-border); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.visually-hidden, .honey, .skip-link:not(:focus) { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+/* "skip to content" — invisible until reached with Tab */
+.skip-link:focus { position: fixed; top: .75rem; inset-inline-start: .75rem; z-index: 100; padding: .6rem 1rem; border-radius: var(--radius-sm); background: var(--ink); color: var(--on-color); font-weight: 600; text-decoration: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; }
+}
+
+
+/* ---------- 3. Layout ---------- */
+.wrap { width: min(100% - 2 * var(--gutter), var(--wrap)); margin-inline: auto; }
+
+/* Section bands — every page is a stack of these (components/Section.astro) */
+.section { padding-block: var(--space-section-top) var(--space-section); }
+.section--soft { background: var(--surface-soft); }
+/* two plain bands in a row, or a plain band right under the page title, share one gap */
+.section:not(.section--soft) + .section:not(.section--soft),
+.page-header:not(.page-header--cover) + .section:not(.section--soft) { padding-top: 0; }   /* not after the home hero: its photo ends the band */
+.section-title { max-width: 32ch; margin-bottom: 1.25rem; text-wrap: balance; }
+.section-lead { max-width: var(--measure); }
+
+/* Reading text */
+.prose { max-width: var(--measure); }
+.prose > * + h2 { margin-top: 1.9em; }
+.prose > * + h3 { margin-top: 2em; }
+.prose ul, .prose ol { padding-inline-start: 1.4em; }
+.prose li + li { margin-top: .35em; }
+.prose img { border-radius: var(--radius); margin-block: 1.5rem; }
+
+
+/* ---------- 4. Shared components ---------- */
+
+/* Buttons (components/Button.astro). Hover = the same button with a clearly darker background + a small lift. */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .55rem;
+  padding: .6rem 1.2rem; border: 1.5px solid transparent; border-radius: var(--radius-pill);
+  font: inherit; font-weight: 600; text-decoration: none; white-space: nowrap; cursor: pointer;   /* a label never breaks onto two lines */
+  transition: background .25s, color .25s, border-color .25s, box-shadow .25s, transform .2s;
+}
+.btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px var(--tint); }
+.btn:active { transform: translateY(0); box-shadow: none; }
+.btn svg { width: 1.2em; height: 1.2em; }
+.btn.btn--sm { padding: .45rem 1rem; font-size: .95rem; }
+/* arrow after the label nudges forward on hover, like the text link */
+.btn__arrow { transition: transform .2s; }
+.btn:hover .btn__arrow { transform: translateX(4px); }
+[dir="rtl"] .btn:hover .btn__arrow { transform: translateX(-4px); }
+
+.btn--primary { background: var(--action); color: var(--on-color); }
+.btn--primary:hover { background: var(--action-hover); color: var(--on-color); }
+.btn--whatsapp { background: var(--whatsapp); color: var(--whatsapp-ink); }   /* dark text: light text on this green fails contrast */
+.btn--whatsapp:hover { background: var(--whatsapp-hover); color: var(--on-color); }
+.btn--ghost { background: var(--surface); color: var(--accent-dark); border-color: var(--accent-border); }
+.btn--ghost:hover { background: var(--light-hover); border-color: var(--accent); color: var(--accent-dark); }
+.btn--light { background: var(--on-color); color: var(--accent-dark); }                 /* on dark backgrounds */
+.btn--light:hover { background: var(--light-hover); color: var(--accent-dark); }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.6rem; }   /* buttons side by side, each as wide as its label */
+
+/* Short facts list. The marker is an inline box with vertical-align: middle, which the browser
+   centres on the font's x-height, so it lands on the middle of the text on every device,
+   with nothing to tune by hand. Hanging indent via text-indent. */
+ul.facts { display: grid; gap: .7rem; margin: 0 0 1.1em; padding: 0; list-style: none; }   /* spaces like a paragraph */
+.facts li { margin: 0; padding-inline-start: 1.25rem; text-indent: -1.25rem; line-height: 1.6; }
+.facts li::before { content: ""; display: inline-block; vertical-align: middle; width: .45rem; height: .45rem; margin-inline-end: .8rem; border-radius: 50%; background: var(--accent); }
+.facts strong { color: var(--ink); }
+
+/* Text link with arrow — secondary actions (components/TextLink.astro). It is its own paragraph,
+   so it spaces like any paragraph; the margin-top covers the case where it follows a list or a card. */
+.text-link-row { margin-top: 1rem; }
+.text-link {
+  display: inline-flex; align-items: center; gap: .4rem; padding: .2rem 0;
+  color: var(--accent-dark); font-weight: 600; text-decoration: none;
+  background: linear-gradient(var(--accent), var(--accent)) 0 100% / 0 1.5px no-repeat;
+  transition: background-size .25s;
+}
+[dir="rtl"] .text-link { background-position: 100% 100%; }   /* the underline grows from the start of the text */
+.text-link:hover { color: var(--accent-dark); background-size: 100% 1.5px; }
+.text-link span { transition: transform .2s; }
+.text-link:hover span { transform: translateX(4px); }
+[dir="rtl"] .text-link:hover span { transform: translateX(-4px); }
+
+/* Role line — the role under a person's name (About header): the one line in a header that isn't plain body text */
+.role { margin: .5rem 0 0; color: var(--accent-dark); font-size: clamp(1.05rem, 2.2vw, 1.2rem); font-weight: 600; line-height: 1.35; }
+
+/* Section note — a short closing block at the end of a section (a side note, "a good fit", "not sure?" + a link):
+   reading width, set apart from the content above it */
+.section-note { max-width: var(--measure); margin-top: 2.5rem; }
+.section-note > :last-child { margin-bottom: 0; }
+.section-note > p + .text-link-row { margin-top: -.6rem; }   /* the link sits right under its sentence */
+
+/* Card */
+.card-title { width: auto; margin: 0 0 .4rem; font-size: 1.2rem; }
+.card-title::after { display: none; }
+.card { padding: 1.5rem; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.card > :last-child { margin-bottom: 0; }
+.section--soft .card { background: var(--bg); }   /* keep cards visible on a soft band */
+/* variant: a card that ends with a text link — the link sits at the bottom, so links line up across a row of cards */
+.card--link { display: flex; flex-direction: column; }
+.card--link > .text-link-row { margin-top: auto; padding-top: .25rem; }
+/* a row of cards: one column on phones, as many as fit (min 16rem) from tablet up */
+.card-grid { display: grid; gap: 1rem; }
+@media (min-width: 640px) { .card-grid { grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); } }
+/* variant: two columns from desktop up — for cards with longer text (coaching paths) */
+@media (min-width: 820px) { .card-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+
+/* ---------- 5. Phone refinements (shared rules only) ---------- */
+@media (max-width: 639px) {
+  body { font-size: 1rem; }
+  .btn { padding: .6rem 1.1rem; font-size: .95rem; }
+  .btn-row { display: grid; grid-auto-flow: row; gap: .6rem; margin-top: 1.25rem; }   /* phones: stacked, full width */
+  .card { padding: 1.15rem 1.2rem; }
+}

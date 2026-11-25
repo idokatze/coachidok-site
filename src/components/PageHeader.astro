@@ -1,0 +1,88 @@
+---
+// One page header for every page: optional eyebrow, a single title, an optional lead,
+// and an optional photo (beside the text on desktop, above it on mobile), shown whole — the layout adapts to the photo.
+// Default slot: more intro content under the lead (paragraphs, buttons) — use it to fill the space beside a tall photo.
+// Slot "aside": content beside the text instead of a photo (the contact form), same layout as a photo.
+// `hero`:  the home page — same header, bigger headline.
+// `cover`: the photo is the background of the whole header, text on top of it (home hero only).
+//          The one place a photo is cropped: it must be a wide scene, never a portrait.
+//          Phones: the text sits on a dark band that fades into the top (sky) of the photo, the subject shows below the text.
+//          Desktop: the photo fills the header; title in the sky, lead and buttons on the sand, the swimmers clear in between.
+interface Props { title: string; eyebrow?: string; lead?: string; image?: string; imageAlt?: string; imageWidth?: number; imageHeight?: number; hero?: boolean; cover?: boolean; }
+const { title, eyebrow, lead, image, imageAlt = '', imageWidth, imageHeight, hero = false, cover = false } = Astro.props;
+const aside = Astro.slots.has('aside');
+const beside = (image && !cover) || aside;
+---
+<header class:list={['page-header', { 'page-header--img': beside, 'page-header--hero': hero, 'page-header--cover': image && cover }]}>
+  {image && cover && <img class="page-header__bg" src={image} width={imageWidth} height={imageHeight} alt={imageAlt} fetchpriority="high" />}
+  <div class={`wrap${beside ? ' page-header__grid' : ''}`}>
+    {image && !cover && <img class="page-header__img" src={image} width={imageWidth} height={imageHeight} alt={imageAlt} fetchpriority="high" />}
+    {aside && <div class="page-header__aside"><slot name="aside" /></div>}
+    <div class="page-header__text">
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h1 class="page-title">{title}</h1>
+      {lead && <p class="page-header__lead">{lead}</p>}
+      <slot />
+    </div>
+  </div>
+</header>
+
+<style>
+  .page-header { padding-block: var(--space-top) var(--space-head); }
+  .page-title { margin: 0; line-height: 1.15; letter-spacing: -0.02em; text-wrap: balance; }
+  .eyebrow { margin-bottom: .6rem; }
+  .page-header__text :global(p:not(.eyebrow)) { max-width: var(--measure); margin: .9rem 0 0; }
+
+  /* with a photo: photo above on phones, beside the text on desktop */
+  .page-header--hero .page-title { max-width: 20ch; font-size: var(--fs-hero); line-height: 1.12; }
+  .page-header__grid { display: grid; gap: 1.5rem; align-items: center; }
+  .page-header__img { width: 100%; height: auto; border-radius: var(--radius); }   /* the whole photo, never cropped */
+  .page-header__grid:has(.page-header__aside) { align-items: start; }   /* aside content (a form) starts level with the title */
+  @media (min-width: 820px) {
+    .page-header__grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .page-header__text { order: -1; }   /* text first (left in English, right in Hebrew), photo beside it */
+    .page-header__grid:has(.page-header__aside) { grid-template-columns: 1fr 1.15fr; }
+  }
+
+  /* ---------- cover: the photo behind the whole header ---------- */
+  .page-header--cover {
+    --cover-photo-h: clamp(17rem, 92vw, 26rem);   /* phones: how much of the photo shows under the text */
+    position: relative; isolation: isolate; overflow: hidden;
+    padding-bottom: calc(var(--cover-photo-h) * .72);   /* the text ends in the sky part of the photo, the swimmers stay clear below it */
+    background: var(--cover);
+    color: var(--on-color);
+  }
+  .page-header__bg { position: absolute; inset-inline: 0; bottom: 0; z-index: -2; width: 100%; height: var(--cover-photo-h); object-fit: cover; object-position: 50% 50%; }
+  /* phones: solid band → fades into the photo's sky; a light shade over the sand at the bottom */
+  .page-header--cover::before {
+    content: ""; position: absolute; inset-inline: 0; bottom: 0; z-index: -1; height: var(--cover-photo-h);
+    background: linear-gradient(to bottom, var(--cover) 0%, var(--cover-shade) 22%, transparent 48%, transparent 70%, var(--cover-shade) 100%);
+  }
+  .page-header--cover .eyebrow { color: var(--cover-eyebrow); }
+  .page-header--cover .page-title { color: var(--on-color); }
+  .page-header--cover .page-header__text :global(p:not(.eyebrow)) { color: var(--cover-text); }
+  /* phones: the buttons go down to the sand, below the swimmers — placed by the photo's height, so it holds on every phone */
+  @media (max-width: 819px) {
+    .page-header--cover .page-header__text :global(.btn-row) { position: absolute; inset-inline: var(--gutter); bottom: calc(var(--cover-photo-h) * .1); margin: 0; }
+  }
+
+  @media (min-width: 820px) {
+    /* desktop: the photo fills the header. Title at the top (sky); lead and buttons under it at the bottom (sand),
+       the middle band (sea and swimmers) left clear; a shade at the top and the bottom keeps the text readable */
+    .page-header--cover { display: flex; min-height: clamp(34rem, 80vh, 44rem); padding-block: clamp(.75rem, 1.5vw, 1.25rem) clamp(1.5rem, 3vw, 2.25rem); }   /* top: the title sits high in the sky */
+    .page-header--cover > .wrap { display: flex; }
+    .page-header--cover .page-header__text {
+      display: grid; width: 100%;
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: auto 1fr auto auto;   /* title · empty middle (the swimmers) · lead · buttons */
+    }
+    .page-header--cover .page-title { grid-column: 1 / -1; max-width: 30ch; }
+    .page-header--cover .page-header__text .page-header__lead { grid-row: 3; align-self: end; margin: 0; }
+    .page-header--cover .page-header__text :global(.btn-row) { grid-row: 4; justify-self: start; margin: 1.25rem 0 0; }
+    .page-header__bg { inset: 0; height: 100%; object-position: 50% 55%; }
+    .page-header--cover::before {
+      inset: 0; height: auto;
+      background: linear-gradient(to bottom, var(--cover-shade) 0%, var(--cover-shade) 18%, transparent 38%, transparent 62%, var(--cover-shade) 82%, var(--cover-shade) 100%);
+    }
+  }
+</style>

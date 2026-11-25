@@ -1,0 +1,8 @@
+---
+// Quiet secondary link with an arrow, on its own line: "Find where you fit →" (styles in global.css)
+import { langOf } from '../site';
+interface Props { href: string; }
+const { href } = Astro.props;
+const arrowChar = langOf(Astro.url.pathname) === 'he' ? '←' : '→';
+---
+<p class="text-link-row"><a class="text-link" href={href}><slot /> <span aria-hidden="true">{arrowChar}</span></a></p>

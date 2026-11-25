@@ -1,0 +1,31 @@
+---
+// Closing call-to-action band (About, Coaching). One look on every page — the text comes from the page.
+//   eyebrow, title, lead: the words (lead optional);  button: label of the contact button
+// Contact button first, WhatsApp second (the site's rule for button rows).
+import Button from './Button.astro';
+import { site, localize } from '../site';
+import { useCopy } from '../i18n';
+interface Props { eyebrow?: string; title: string; lead?: string; button: string; }
+const { eyebrow, title, lead, button } = Astro.props;
+const { lang, t } = useCopy(Astro.url.pathname);
+---
+<section class="cta-band">
+  <div class="wrap cta">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h2 class="cta__title">{title}</h2>
+    {lead && <p class="cta__lead">{lead}</p>}
+    <div class="btn-row">
+      <Button href={localize('/contact', lang)} arrow>{button}</Button>
+      <Button variant="whatsapp" href={site.whatsapp} external icon="whatsapp">{t.contactMethods.whatsapp}</Button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-band { padding-block: clamp(2.5rem, 7vw, 4rem); background: var(--accent-dark); }
+  .cta { display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .cta .eyebrow { color: var(--bar-accent); }
+  .cta__title { max-width: 24ch; margin: 0; color: var(--on-color); text-wrap: balance; }   /* the site's h2, light on the dark band */
+  .cta__lead { max-width: var(--measure); margin: 1rem 0 0; color: var(--cover-text); }
+  @media (max-width: 639px) { .cta :global(.btn-row) { align-self: stretch; } }   /* phones: the row stacks full width, like everywhere else */
+</style>

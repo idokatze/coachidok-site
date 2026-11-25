@@ -1,0 +1,18 @@
+---
+// Shown for any address that doesn't exist (the host serves 404.html). English, like the root of the site.
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Section from '../components/Section.astro';
+import TextLink from '../components/TextLink.astro';
+import { site } from '../site';
+import { useCopy } from '../i18n';
+
+const { t } = useCopy(Astro.url.pathname);
+---
+<Base title={`${t.notFound.title} | ${site.name}`} description={t.notFound.text} noindex>
+  <PageHeader title={t.notFound.title} />
+  <Section prose>
+    <p>{t.notFound.text}</p>
+    <TextLink href="/">{t.notFound.home}</TextLink>
+  </Section>
+</Base>
