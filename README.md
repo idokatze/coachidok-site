@@ -46,4 +46,4 @@ public/            favicon, share image (og-hero.jpg, 1200×630), _headers (secu
   - **Sentence case** for headings written as a sentence, a question or an informal phrase ("Why train with Ido", "My coaching journey", the story sub-headings "How I found coaching"), and for list labels that aren't titles ("15+ years", "Holistic approach").
 - Typography: curly apostrophes and quotes (’ “ ”), spaced en dash ( – ), no em dash.
 
-The previous Vue version of the site is in `_archive/vue-site/` (not in git).
+The previous Vue version of the site is kept on the `vue-site` branch (GitHub). `main` is the live site: Cloudflare Pages builds and publishes every push to it.
