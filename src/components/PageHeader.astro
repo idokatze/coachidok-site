@@ -1,6 +1,8 @@
 ---
 // One page header for every page: optional eyebrow, a single title, an optional lead,
 // and an optional photo (beside the text on desktop, above it on mobile), shown whole — the layout adapts to the photo.
+// `image`: a photo imported from src/assets/images. Astro makes the smaller sizes and WebP copies when the site is built,
+// and each screen downloads the size it needs (srcset/sizes).
 // Default slot: more intro content under the lead (paragraphs, buttons) — use it to fill the space beside a tall photo.
 // Slot "aside": content beside the text instead of a photo (the contact form), same layout as a photo.
 // `hero`:  the home page — same header, bigger headline.
@@ -8,22 +10,24 @@
 //          The one place a photo is cropped: it must be a wide scene, never a portrait.
 //          Phones: the text sits on a dark band that fades into the top (sky) of the photo, the subject shows below the text.
 //          Desktop: the photo fills the header; title in the sky, lead and buttons on the sand, the swimmers clear in between.
-interface Props { title: string; eyebrow?: string; lead?: string; image?: string; imageAlt?: string; imageWidth?: number; imageHeight?: number; hero?: boolean; cover?: boolean; }
-const { title, eyebrow, lead, image, imageAlt = '', imageWidth, imageHeight, hero = false, cover = false } = Astro.props;
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+interface Props { title: string; eyebrow?: string; lead?: string; image?: ImageMetadata; imageAlt?: string; hero?: boolean; cover?: boolean; }
+const { title, eyebrow, lead, image, imageAlt = '', hero = false, cover = false } = Astro.props;
 const aside = Astro.slots.has('aside');
 const beside = (image && !cover) || aside;
 ---
 <header class:list={['page-header', { 'page-header--img': beside, 'page-header--hero': hero, 'page-header--cover': image && cover }]}>
-  {image && cover && <img class="page-header__bg" src={image} width={imageWidth} height={imageHeight} alt={imageAlt} fetchpriority="high" />}
+  {image && cover && <Image class="page-header__bg" src={image} alt={imageAlt} format="webp" widths={[640, 960, 1280, 1920, 2560]} sizes="100vw" loading="eager" fetchpriority="high" />}
   <div class={`wrap${beside ? ' page-header__grid' : ''}`}>
-    {image && !cover && <img class="page-header__img" src={image} width={imageWidth} height={imageHeight} alt={imageAlt} fetchpriority="high" />}
-    {aside && <div class="page-header__aside"><slot name="aside" /></div>}
     <div class="page-header__text">
       {eyebrow && <p class="eyebrow">{eyebrow}</p>}
       <h1 class="page-title">{title}</h1>
       {lead && <p class="page-header__lead">{lead}</p>}
       <slot />
     </div>
+    {image && !cover && <Image class="page-header__img" src={image} alt={imageAlt} format="webp" widths={[400, 640, 800, 1080]} sizes="(min-width: 820px) 34rem, 100vw" loading="eager" fetchpriority="high" />}
+    {aside && <div class="page-header__aside"><slot name="aside" /></div>}
   </div>
 </header>
 
@@ -33,14 +37,16 @@ const beside = (image && !cover) || aside;
   .eyebrow { margin-bottom: .6rem; }
   .page-header__text :global(p:not(.eyebrow)) { max-width: var(--measure); margin: .9rem 0 0; }
 
-  /* with a photo: photo above on phones, beside the text on desktop */
+  /* with a photo: photo above on phones, beside the text on desktop.
+     The text comes first in the page's code (screen readers and search engines read the h1 first); only the photo is moved up on phones.
+     An aside (the contact form) stays after the text on every screen. */
   .page-header--hero .page-title { max-width: 20ch; font-size: var(--fs-hero); line-height: 1.12; }
   .page-header__grid { display: grid; gap: 1.5rem; align-items: center; }
-  .page-header__img { width: 100%; height: auto; border-radius: var(--radius); }   /* the whole photo, never cropped */
+  .page-header__img { order: -1; width: 100%; height: auto; border-radius: var(--radius); }   /* the whole photo, never cropped; above the text on phones */
   .page-header__grid:has(.page-header__aside) { align-items: start; }   /* aside content (a form) starts level with the title */
   @media (min-width: 820px) {
     .page-header__grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
-    .page-header__text { order: -1; }   /* text first (left in English, right in Hebrew), photo beside it */
+    .page-header__img { order: 0; }   /* beside the text: text first (left in English, right in Hebrew) */
     .page-header__grid:has(.page-header__aside) { grid-template-columns: 1fr 1.15fr; }
   }
 

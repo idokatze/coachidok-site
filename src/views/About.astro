@@ -5,6 +5,8 @@ import PageHeader from '../components/PageHeader.astro';
 import Section from '../components/Section.astro';
 import Cta from '../components/Cta.astro';
 import ReasonList from '../components/ReasonList.astro';
+import coachPortrait from '../assets/images/coach-portrait-lakeside.jpg';
+import { site } from '../site';
 import { useCopy } from '../i18n';
 import { seo } from '../i18n/seo';
 
@@ -13,35 +15,27 @@ const page = seo[lang].about;
 const bio = t.coachBio;
 ---
 <Base title={page.title} description={page.description}>
-  <PageHeader title={bio.name} image="/images/coach-portrait-lakeside-1200.jpg" imageWidth={1200} imageHeight={1200} imageAlt={t.about.coachPortraitAlt}>
+  <PageHeader title={bio.name} image={coachPortrait} imageAlt={t.about.coachPortraitAlt}>
     <p class="role">{bio.title}</p>
     <p>{t.about.introLead}</p>
   </PageHeader>
 
-  {/* Experience — English for now; the Hebrew page keeps the previous cards until it has its own copy */}
-  {lang === 'en' ? (
-    <Section soft title={t.about.experienceTitle}>
-      <ReasonList items={t.about.experienceItems} />
-    </Section>
-  ) : (
-    <Section soft>
-      <div class="card-grid">
-        {bio.experience.map((item) => (
-          <div class="card">
-            <h2 class="card-title">{item.title}</h2>
-            <ul class="facts">{item.points.map((point) => <li>{point}</li>)}</ul>
-          </div>
-        ))}
-      </div>
-    </Section>
-  )}
+  <Section soft title={t.about.experienceTitle}>
+    <ReasonList items={t.about.experienceItems} />
+  </Section>
 
-  <Section eyebrow={t.about.pathEyebrow} title={t.about.pathTitle}>
+  <Section title={t.about.pathTitle}>
     <div class="prose">
       {bio.sections.map((section) => (
         <>
           <h3>{section.title}</h3>
-          {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+          {section.paragraphs.map((paragraph) => {
+            // A section may name words in its text that link to idokatze.com (Hebrew only — see scripts/check-copy.mjs)
+            const linkText = (section as { linkText?: string }).linkText;
+            if (!linkText || !paragraph.includes(linkText)) return <p>{paragraph}</p>;
+            const [before, after] = paragraph.split(linkText);
+            return <p>{before}<a href={site.theWork} target="_blank" rel="noopener">{linkText}</a>{after}</p>;
+          })}
         </>
       ))}
     </div>

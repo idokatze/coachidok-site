@@ -18,10 +18,10 @@
 
    Breakpoints (CSS can't use variables in media queries, so they are
    written out — keep to these):
+     small   ≤ 359px     (max-width: 359px)   — the header only: the name hides on the smallest phones
      phone   ≤ 639px     (max-width: 639px)
      tablet  ≥ 640px     (min-width: 640px)
      desktop ≥ 820px     (min-width: 820px)
-     wide    ≥ 1000px    (min-width: 1000px)
    Mobile first: base rules are for phones, media queries add to them.
    ===================================================================== */
 
@@ -78,8 +78,8 @@
   --measure: 40rem;                         /* max line length for reading */
 
   /* space & shape */
-  --wrap: 68rem;                                /* page container */
-  --gutter: 1rem;                               /* side margin on phones */
+  --wrap: 68rem;                                /* page container: the content's maximum width */
+  --gutter: clamp(1rem, 4vw, 3rem);             /* side margin until the container reaches its maximum: 16px on phones, growing with the screen to 48px */
   --space-top: clamp(1.5rem, 3.5vw, 2.5rem);    /* header → page title */
   --space-head: clamp(1.25rem, 3vw, 2rem);      /* page title block → content */
   --space-section: clamp(2.5rem, 6vw, 4rem);    /* inside every section band, bottom */
@@ -139,6 +139,7 @@ hr { margin: 1.5rem 0; border: 0; border-top: 1px solid var(--accent-border); }
 
 
 /* ---------- 3. Layout ---------- */
+/* One container for the whole site — header, content and footer share it, so their edges line up at every width */
 .wrap { width: min(100% - 2 * var(--gutter), var(--wrap)); margin-inline: auto; }
 
 /* Section bands — every page is a stack of these (components/Section.astro) */
@@ -186,7 +187,9 @@ hr { margin: 1.5rem 0; border: 0; border-top: 1px solid var(--accent-border); }
 .btn--light { background: var(--on-color); color: var(--accent-dark); }                 /* on dark backgrounds */
 .btn--light:hover { background: var(--light-hover); color: var(--accent-dark); }
 
-.btn-row { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.6rem; }   /* buttons side by side, each as wide as its label */
+/* buttons side by side share one width (the widest); where a column is too narrow for that, the shorter one narrows to its label,
+   so the row never wraps or runs out of its column. Phones: stacked, full width (section 5). Same rule as idokatze.com. */
+.btn-row { display: inline-grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: .75rem; margin-top: 1.6rem; }
 
 /* Short facts list. The marker is an inline box with vertical-align: middle, which the browser
    centres on the font's x-height, so it lands on the middle of the text on every device,

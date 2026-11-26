@@ -32,6 +32,8 @@ export const site = {
   email: 'idokatze@gmail.com',
   trainingPeaks: 'https://www.trainingpeaks.com/coach/idok',
   linkedIn: 'https://www.linkedin.com/in/idokatze',
+  // Ido's Byron Katie site (Hebrew only). Linked from the Hebrew Coaching and About pages.
+  theWork: 'https://idokatze.com',
 };
 
 /** Main menu: an address and the key of its label in the copy (header.nav.*). Contact is the header button. */

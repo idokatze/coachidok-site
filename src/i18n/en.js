@@ -35,8 +35,8 @@ export default {
         linkedIn: 'LinkedIn',
     },
     hero: {
-        title: 'High-Performance Coaching Experience for Serious Endurance Goals',
-        lead: 'Work to achieve your goals with one of Israel’s most prominent endurance coaches. More than 15 years of coaching triathletes of all levels. Juniors just starting out, all the way to European Cups and European Championships. Age-group athletes competing in their first sprint, to long-distance athletes trying to get the most out of themselves.',
+        title: 'High-Performance Triathlon Coaching for Serious Endurance Goals',
+        lead: 'Work to achieve your goals with one of Israel’s most prominent triathlon coaches. More than 15 years of coaching triathletes of all levels. Juniors just starting out, all the way to European Cups and European Championships. Age-group athletes competing in their first sprint, to 70.3 and Ironman athletes trying to get the most out of themselves.',
         cta: 'Book a Free Consultation',
     },
     home: {
@@ -48,31 +48,10 @@ export default {
             { label: 'Mental coaching', text: 'certified Byron Katie facilitator, helping athletes reduce the negative thoughts that bring them down' },
             { label: 'Your plan', text: 'your training plan is yours alone, built around your life, not a template' },
             { label: 'Ongoing feedback and communication', text: 'open lines of communication' },
-            { label: 'Modern coaching platform', text: 'TrainingPeaks, data-driven and precise' },
-        ],
-        proofEyebrow: 'Why Work With Me',
-        proofTitle:
-            'High-performance coaching experience, applied to your goals and your reality',
-        proofLead:
-            'My coaching background includes the national academy, Israel’s U17 national team, and the elite national-team environment, alongside years of work with serious juniors and committed age-group athletes. Today I bring that same standard of planning, observation, and accountability into a personal coaching process.',
-        proofItems: [
-            {
-                value: 'National-Level',
-                label: 'Academy, U17, and elite-team experience',
-            },
-            {
-                value: '15+',
-                label: 'Years coaching across levels',
-            },
-            {
-                value: 'Half & Full',
-                label: 'Long-course guidance and experience',
-            },
+            { label: 'Modern coaching platform', text: 'online through TrainingPeaks, data-driven and precise' },
         ],
         audienceEyebrow: 'Who I Coach',
-        audienceTitle:
-            'Coaching built for athletes with serious goals, not generic plans',
-        aboutEyebrow: 'About Coach Ido',
+        audienceTitle: 'Triathlon coaching for athletes with serious goals, not generic plans',
         audienceCards: [
             {
                 title: 'First-Time & Developing Triathletes',
@@ -80,7 +59,7 @@ export default {
             },
             {
                 title: 'Committed Age-Group Athletes',
-                body: 'Sprint, Olympic, and long-course athletes who want to improve, prepare confidently for a bigger goal, and get more from the work they put in.',
+                body: 'Sprint, Olympic, 70.3 and Ironman athletes who want to improve, prepare confidently for a bigger goal, and get more from the work they put in.',
             },
             {
                 title: 'Competitive Junior Athletes',
@@ -94,43 +73,6 @@ export default {
     coachBio: {
         name: 'Coach Ido Katzenellenbogen',
         title: 'Personal Triathlon & Endurance Coach',
-        keywords: [
-            'National-level coaching background',
-            '15+ years coaching',
-            'High-performance background',
-            'Personal one-on-one process',
-        ],
-        homeIntro:
-            'I work with committed age-group athletes, serious junior athletes, and endurance athletes who want the insight, standards, and structure of high-level coaching in a format that fits real life.',
-        homeCredibility:
-            'My job is to turn experience into better decisions: clearer planning, smarter progression, and consistent work toward goals that matter, including long-course racing and long-term development.',
-        experience: [
-            {
-                title: 'Past High-Performance Coaching Roles',
-                points: [
-                    'Head Coach, National Academy of Excellence in Sport',
-                    'Head Coach, Israel U17 National Team',
-                    'Assistant Coach, Israel Elite National Team',
-                    'Club Coach - Age-group, junior, and children',
-                ],
-            },
-            {
-                title: '15+ Years Coaching Experience',
-                points: [
-                    'Short and long-course triathlon',
-                    'Draft-legal and non-drafting formats',
-                    'Swim, bike, and run coaching',
-                ],
-            },
-            {
-                title: 'Applied to the Whole Athlete',
-                points: [
-                    'Personalized planning',
-                    'Ongoing feedback and adjustment',
-                    'Attention to mental skills, strength and mobility, nutrition',
-                ],
-            },
-        ],
         sections: [
             {
                 title: 'Coaching background',
@@ -185,27 +127,24 @@ export default {
             { label: 'Triathlon Club Coach', text: 'age-group, junior and children' },
             { label: '15+ years', text: 'short and long-course triathlon, draft-legal and non-drafting, swim, bike and run' },
         ],
-        coachingApproach: 'Coaching approach',
-        coachPortraitAlt: 'Coach Ido by the water',
+        coachPortraitAlt: 'Triathlon coach Ido Katzenellenbogen by the water',
         moreAboutMe: 'More About Me',
         introLead:
             'My coaching brings high-performance experience into a personal process built around the athlete, the goal, and the realities of life outside the sport.',
-        pathEyebrow: 'My path',
-        pathTitle:
-            'A coaching philosophy shaped by observation, learning, and real people',
+        pathTitle: 'My coaching journey',
         ctaEyebrow: 'Let’s Work Together',
         ctaTitle:
             'Are you ready to take the next step on your sporting journey?',
         ctaButton: 'Contact Me',
     },
     coaching: {
-        coachPortraitAlt: 'Coach supporting an athlete before a swim session',
+        coachPortraitAlt: 'Triathlon coach Ido supporting an athlete before a swim session',
         title: 'Real partnership, clear direction, and less uncertainty',
-        lead: 'Good coaching is not just about writing sessions. It is an ongoing partnership built on planning, communication, feedback, and better decision-making over time.',
+        lead: 'Good online triathlon coaching is not just about writing sessions. It is an ongoing partnership built on planning, communication, feedback, and better decision-making over time.',
         primaryCta: 'Book a Free Consultation',
         secondaryCta: 'More About Me',
         pathsEyebrow: 'Who I coach',
-        pathsTitle: 'Coaching for where you are now and where you want to go',
+        pathsTitle: 'From your first triathlon to Ironman',
         pathsLead:
             'You do not need to arrive at a particular level before coaching becomes relevant. Start with the situation that sounds most like you and see how my experience applies to your next step.',
         paths: [
@@ -223,7 +162,7 @@ export default {
             {
                 id: 'short-course',
                 goal: 'short-course-progress',
-                label: 'Sprint & Olympic distance',
+                label: 'Sprint & Olympic – age group',
                 title: 'Make purposeful progress in all aspects of triathlon',
                 recognition:
                     'You have completed races and built some consistency, but you want more structure, better execution, or a clear route toward your next distance.',
@@ -234,8 +173,8 @@ export default {
             {
                 id: 'long-course',
                 goal: 'long-course',
-                label: 'Half & full distance',
-                title: 'Building confidently toward a big goal',
+                label: 'Half Ironman (70.3) & Ironman',
+                title: 'Building confidently toward your 70.3 or Ironman',
                 recognition:
                     'You may be preparing for the distance for the first time, or returning with the experience and ambition to perform better.',
                 approach:
@@ -254,13 +193,10 @@ export default {
                 cta: 'Talk about your development',
             },
         ],
-        runningEyebrow: 'Distance running',
-        runningTitle: 'Triathlon first, with room for the right running goal',
-        runningBody:
-            'My coaching is centered on triathlon. I also work with distance runners preparing for goals from 5K through the marathon when the coaching fit is right.',
+        runningBody: 'A runner rather than a triathlete? I also coach distance runners, from 5K to the marathon.',
+        runningLink: 'Talk about your running goal',
         includesEyebrow: 'What coaching includes',
-        includesTitle:
-            'What the coaching relationship actually gives you',
+        includesTitle: 'More than a training plan',
         pillars: [
             {
                 title: 'A True Coaching Partnership',
@@ -278,9 +214,13 @@ export default {
                 title: 'Open Communication and Adjustment',
                 body: 'Regular communication, honest feedback, and steady updates help the training respond to fatigue, travel, life demands, and how you are actually progressing.',
             },
+            {
+                title: 'Mental Coaching',
+                body: 'Mental health is part of performance. As a certified Byron Katie facilitator, I help athletes work with the negative thoughts that bring them down, in training and on race day.',
+            },
         ],
         processEyebrow: 'How the process works',
-        processTitle: 'From a first conversation to an active coaching partnership',
+        processTitle: 'How we get started',
         processLead:
             'Coaching is delivered remotely through TrainingPeaks and ongoing communication, for athletes in Israel and anywhere else in the world.',
         steps: [
@@ -297,7 +237,7 @@ export default {
             {
                 number: '03',
                 title: 'Your Initial Training Direction',
-                body: 'I set up the initial plan in TrainingPeaks and use practical field assessments where useful. You do not need to arrange or pay for outside laboratory testing before meaningful training can begin.',
+                body: 'Your plan is waiting in TrainingPeaks, on your phone, computer and smartwatch: every session has a clear purpose, and the week is built around your schedule. Where needed, we use simple field tests to fine-tune your training zones.',
             },
             {
                 number: '04',
@@ -305,10 +245,6 @@ export default {
                 body: 'You leave brief feedback after each session and more detail after key work. I review, respond, follow up, and adjust as training, fatigue, travel, illness, and life provide new information.',
             },
         ],
-        fitEyebrow: 'A good coaching fit',
-        fitTitle: 'Your level is not the qualification',
-        fitBody:
-            'What matters is that you care about improving, communicate openly, and want to take the journey with a coach. I bring the planning, experience, observation, and judgment; you bring commitment, honest feedback, and a willingness to engage with the process.',
         nextEyebrow: 'A simple first step',
         nextTitle: 'Start with a conversation, not a commitment',
         nextLead:
@@ -316,8 +252,8 @@ export default {
         nextButton: 'Book a Free Consultation',
     },
     contact: {
-        title: 'Let’s start with a simple conversation about your training and goals',
-        lead: 'Share a few details about where you are now and what you are working toward. I will get a sense of whether I can help and what kind of support makes sense.',
+        title: 'Let’s start with a simple conversation about your triathlon training and goals',
+        lead: 'Share a few details about where you are now and what you are working toward.',
         contactMethods: 'Contact methods',
         form: {
             title: 'Free consultation',

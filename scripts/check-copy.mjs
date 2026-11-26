@@ -5,16 +5,16 @@ import en from '../src/i18n/en.js';
 import he from '../src/i18n/he.js';
 
 // English-only for now: the Hebrew text for these hasn't been written yet. Remove each line as its Hebrew arrives.
-const PENDING_HEBREW = [
-  'home.bringTitle',
-  'home.bringItems',
-  'about.experienceTitle',
-  'about.experienceItems',
-  'coachBio.sections',
-];
+const PENDING_HEBREW = [];
 
 const differences = [];
-const pending = (path) => PENDING_HEBREW.some((p) => path === p || path.startsWith(p + '.') || path.startsWith(p + '['));
+// Hebrew only, on purpose: links to idokatze.com, which is in Hebrew. An English page without the key shows no link.
+const ONLY_HEBREW = [
+  'coaching.pillars[4].linkText',
+  'coachBio.sections[4].linkText',
+];
+
+const pending = (path) => [...PENDING_HEBREW, ...ONLY_HEBREW].some((p) => path === p || path.startsWith(p + '.') || path.startsWith(p + '['));
 
 function compare(a, b, path) {
   if (pending(path)) return;

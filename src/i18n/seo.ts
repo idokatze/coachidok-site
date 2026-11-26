@@ -1,7 +1,7 @@
 // <title> and description of every page, per language.
-// English: carried over from the previous site. Hebrew: put together from the Hebrew page copy until it gets its own text.
+// English: written around the phrases athletes search for (online triathlon coach, 70.3, Ironman, first triathlon) —
+// titles under 60 characters, descriptions under ~155, so search results don't cut them. Hebrew: the same, around מאמן טריאתלון, אימון טריאתלון אונליין, חצי-איש-ברזל and איש-ברזל.
 import type { Lang } from '../site';
-import he from './he.js';
 
 type PageSeo = { title: string; description: string };
 export type PageKey = 'home' | 'about' | 'coaching' | 'contact';
@@ -9,27 +9,39 @@ export type PageKey = 'home' | 'about' | 'coaching' | 'contact';
 export const seo: Record<Lang, Record<PageKey, PageSeo>> = {
   en: {
     home: {
-      title: 'Coach Ido K | Personal Triathlon & Endurance Coaching',
-      description: 'Personal triathlon and endurance coaching from Ido Katzenellenbogen, bringing 15+ years of national-level coaching experience to serious athletes.',
+      title: 'Online Triathlon Coach – Short Course, 70.3 & Ironman',
+      description: '1-on-1 online triathlon coaching, short course to 70.3 and Ironman. 15+ years coaching, former head coach of Israel’s U17 national team. Based in Israel.',
     },
     about: {
-      title: 'About Coach Ido | Triathlon & Endurance Coach',
-      description: 'Meet Ido Katzenellenbogen, a personal endurance coach with 15+ years of experience across national teams, junior development, and age-group sport.',
+      title: 'Triathlon Coach Ido Katzenellenbogen | About',
+      description: '15+ years coaching triathlon. Former head coach of Israel’s national academy and U17 team, and a certified Byron Katie facilitator for the mental side.',
     },
     coaching: {
-      title: 'Personal Triathlon & Endurance Coaching | Coach Ido K',
-      description: 'Remote personal coaching for first-time, short-course, long-distance, and junior elite triathletes, built around planning, feedback, and communication.',
+      title: 'Online Triathlon Coaching for Every Level | Coach Ido K',
+      description: '1-on-1 online coaching through TrainingPeaks: first triathlon, sprint and Olympic, half Ironman (70.3), Ironman and junior development.',
     },
     contact: {
-      title: 'Book a Free Coaching Consultation | Coach Ido K',
-      description: 'Tell Coach Ido about your triathlon or endurance goals and start with a free consultation about the coaching support that fits you.',
+      title: 'Free Triathlon Coaching Consultation | Coach Ido K',
+      description: 'Tell me about your training and goals and set up a free 10–15 minute call. Online coaching for athletes in Israel and worldwide.',
     },
   },
   he: {
-    home: { title: `${he.coachBio.name} | ${he.coachBio.title}`, description: he.hero.lead },
-    about: { title: `${he.header.nav.about} | ${he.coachBio.name}`, description: he.about.introLead },
-    coaching: { title: `${he.header.nav.coaching} | ${he.coachBio.name}`, description: he.coaching.lead },
-    contact: { title: `${he.header.nav.contact} | ${he.coachBio.name}`, description: he.contact.lead },
+    home: {
+      title: 'מאמן טריאתלון אישי אונליין – ספרינט ועד 70.3 ואיש-ברזל',
+      description: 'אימון טריאתלון אישי אונליין, ממרחקים קצרים ועד חצי-איש-ברזל (70.3) ואיש-ברזל. מעל 15 שנות אימון, לשעבר מאמן ראשי של נבחרת ישראל עד גיל 17.',
+    },
+    about: {
+      title: 'מאמן הטריאתלון עידו קצנלנבוגן | אודות',
+      description: 'מעל 15 שנות אימון טריאתלון. לשעבר מאמן ראשי באקדמיית וינגייט ובנבחרת ישראל עד גיל 17, ומאפשר מוסמך בשיטת העבודה של ביירון קייטי.',
+    },
+    coaching: {
+      title: 'אימון טריאתלון אישי אונליין | עידו קצנלנבוגן',
+      description: 'אימון אישי אחד על אחד דרך TrainingPeaks: טריאתלון ראשון, ספרינט ואולימפי, חצי-איש-ברזל (70.3), איש-ברזל ומסלול נוער.',
+    },
+    contact: {
+      title: 'שיחת ייעוץ חינם לאימון טריאתלון | עידו קצנלנבוגן',
+      description: 'ספרו לי על האימונים והמטרות שלכם ונתאם שיחה חינם של 10–15 דקות. אימון טריאתלון אונליין לספורטאים בישראל ובעולם.',
+    },
   },
 };
 

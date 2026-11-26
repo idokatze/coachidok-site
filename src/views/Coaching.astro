@@ -8,7 +8,8 @@ import TextLink from '../components/TextLink.astro';
 import ReasonList from '../components/ReasonList.astro';
 import Steps from '../components/Steps.astro';
 import Cta from '../components/Cta.astro';
-import { localize } from '../site';
+import coachSupportingSwimmer from '../assets/images/coach-supporting-swimmer.jpg';
+import { localize, site } from '../site';
 import { useCopy } from '../i18n';
 import { seo } from '../i18n/seo';
 
@@ -17,7 +18,7 @@ const page = seo[lang].coaching;
 const c = t.coaching;
 ---
 <Base title={page.title} description={page.description}>
-  <PageHeader title={c.title} lead={c.lead} image="/images/coach-supporting-swimmer.jpg" imageWidth={1600} imageHeight={1066} imageAlt={c.coachPortraitAlt}>
+  <PageHeader title={c.title} lead={c.lead} image={coachSupportingSwimmer} imageAlt={c.coachPortraitAlt}>
     <div class="btn-row">
       <Button href={localize('/contact', lang)} arrow>{c.primaryCta}</Button>
       <Button variant="ghost" href={localize('/about', lang)}>{c.secondaryCta}</Button>
@@ -37,23 +38,20 @@ const c = t.coaching;
       ))}
     </div>
     <div class="section-note">
-      <p class="eyebrow">{c.runningEyebrow}</p>
-      <h3>{c.runningTitle}</h3>
       <p>{c.runningBody}</p>
+      <TextLink href={`${localize('/contact', lang)}?goal=distance-running`}>{c.runningLink}</TextLink>
     </div>
   </Section>
 
   <Section eyebrow={c.includesEyebrow} title={c.includesTitle}>
-    <ReasonList items={c.pillars.map((p) => ({ label: p.title, text: p.body }))} />
+    <ReasonList items={c.pillars.map((p) => {
+      const linkText = (p as { linkText?: string }).linkText; // Hebrew only — see scripts/check-copy.mjs
+      return { label: p.title, text: p.body, link: linkText ? { href: site.theWork, text: linkText, external: true } : undefined };
+    })} />
   </Section>
 
   <Section soft eyebrow={c.processEyebrow} title={c.processTitle} lead={c.processLead}>
     <Steps steps={c.steps} />
-    <div class="section-note">
-      <p class="eyebrow">{c.fitEyebrow}</p>
-      <h3>{c.fitTitle}</h3>
-      <p>{c.fitBody}</p>
-    </div>
   </Section>
 
   <Cta eyebrow={c.nextEyebrow} title={c.nextTitle} lead={c.nextLead} button={c.nextButton} />

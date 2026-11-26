@@ -16,6 +16,7 @@ npm run build    # static site in dist/
 
 ```text
 src/
+  assets/images/   the site's photos — shown with Astro's <Image>, which makes the phone/desktop sizes and WebP copies at build time
   site.ts          site data (name, contact details, nav, contacts) and the language helpers
   i18n/            all page copy: en.js, he.js (same keys in both), seo.ts (titles + descriptions)
   styles/global.css  tokens, base elements, layout, shared patterns (buttons, cards, facts, text link)
@@ -25,7 +26,7 @@ src/
   views/           one file per page, shared by both languages (Home.astro …)
   pages/           routes: index.astro → /,  he/index.astro → /he  (each just renders its view), 404.astro
 scripts/           check-copy.mjs (part of npm run check; lists English text still waiting for Hebrew)
-public/            images, favicon, share image (og-hero.jpg, 1200×630), _headers (security headers), robots.txt
+public/            favicon, share image (og-hero.jpg, 1200×630), _headers (security headers), robots.txt
 ```
 
 ## Rules

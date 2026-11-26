@@ -1,13 +1,15 @@
 ---
 // Scannable list: one item per row, hairline between rows, dot marker. One column at reading width on every screen:
 // items differ in length, and two columns left uneven rows and an empty cell.
-// Each item: a bold label (what the eye lands on when scanning) and one plain line after it.
+// Each item: a bold label (what the eye lands on when scanning) and one plain line after it, and optionally a link at the end.
 // Same pattern as idokatze.com's ReasonList, with the label added.
-interface Props { items: { label: string; text: string }[]; }
+interface Props { items: { label: string; text: string; link?: { href: string; text: string; external?: boolean } }[]; }
 const { items } = Astro.props;
 ---
 <ul class="reasons">
-  {items.map((item) => <li><strong>{item.label}</strong> – {item.text}</li>)}
+  {items.map((item) => (
+    <li><strong>{item.label}</strong> – {item.text}{item.link && <> <a href={item.link.href} target={item.link.external ? '_blank' : undefined} rel={item.link.external ? 'noopener' : undefined}>{item.link.text}</a></>}</li>
+  ))}
 </ul>
 
 <style>

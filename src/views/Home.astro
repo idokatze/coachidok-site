@@ -7,6 +7,8 @@ import Split from '../components/Split.astro';
 import Button from '../components/Button.astro';
 import TextLink from '../components/TextLink.astro';
 import ReasonList from '../components/ReasonList.astro';
+import heroStartLine from '../assets/images/hero-start-line.jpg';
+import coachPortrait from '../assets/images/coach-portrait-lakeside.jpg';
 import { site, localize } from '../site';
 import { useCopy } from '../i18n';
 import { seo } from '../i18n/seo';
@@ -46,52 +48,21 @@ const structuredData = {
 <Base title={page.title} description={page.description}>
   <script is:inline type="application/ld+json" slot="head" set:html={JSON.stringify(structuredData)} />
 
-  <PageHeader hero cover title={t.hero.title} lead={t.hero.lead} image="/images/hero-start-line.jpg" imageWidth={2576} imageHeight={1449}>
+  <PageHeader hero cover title={t.hero.title} lead={t.hero.lead} image={heroStartLine}>
     <div class="btn-row">
       <Button href={localize('/contact', lang)} arrow>{t.hero.cta}</Button>
     </div>
   </PageHeader>
 
-  {/* "Why train with Ido", with the portrait — English for now; the Hebrew page keeps the two previous sections until it has its own copy */}
-  {lang === 'en' ? (
-    <Section>
-      <Split image="/images/coach-portrait-lakeside-1200.jpg" imageWidth={1200} imageHeight={1200} imageAlt={t.about.coachPortraitAlt}>
-        <h2 class="section-title">{t.home.bringTitle}</h2>
-        <ReasonList items={t.home.bringItems} />
-        <div class="btn-row">
-          <Button variant="ghost" href={localize('/about', lang)} arrow>{t.about.moreAboutMe}</Button>
-        </div>
-      </Split>
-    </Section>
-  ) : (
-    <>
-    <Section soft eyebrow={t.home.proofEyebrow} title={t.home.proofTitle} lead={t.home.proofLead}>
-      <div class="card-grid stats">
-        {t.home.proofItems.map((item) => (
-          <div class="card">
-            <p class="stat__value">{item.value}</p>
-            <p>{item.label}</p>
-          </div>
-        ))}
+  <Section>
+    <Split image={coachPortrait} imageAlt={t.about.coachPortraitAlt}>
+      <h2 class="section-title">{t.home.bringTitle}</h2>
+      <ReasonList items={t.home.bringItems} />
+      <div class="btn-row">
+        <Button variant="ghost" href={localize('/about', lang)} arrow>{t.about.moreAboutMe}</Button>
       </div>
-    </Section>
-    <Section>
-      <Split image="/images/coach-portrait-lakeside-1200.jpg" imageWidth={1200} imageHeight={1200} imageAlt={t.about.coachPortraitAlt}>
-        <p class="eyebrow">{t.home.aboutEyebrow}</p>
-        <h2 class="about__name">{t.coachBio.name}</h2>
-        <p class="role">{t.coachBio.title}</p>
-        <ul class="facts" aria-label={t.about.coachingApproach}>
-          {t.coachBio.keywords.map((k) => <li>{k}</li>)}
-        </ul>
-        <p class="about__intro">{t.coachBio.homeIntro}</p>
-        <p>{t.coachBio.homeCredibility}</p>
-        <div class="btn-row">
-          <Button variant="ghost" href={localize('/about', lang)} arrow>{t.about.moreAboutMe}</Button>
-        </div>
-      </Split>
-    </Section>
-    </>
-  )}
+    </Split>
+  </Section>
 
   <Section soft eyebrow={t.home.audienceEyebrow} title={t.home.audienceTitle}>
     <div class="card-grid">
@@ -108,10 +79,3 @@ const structuredData = {
     </div>
   </Section>
 </Base>
-
-<style>
-  /* TEMPORARY — only the Hebrew page's previous sections use these; they go with those sections when the Hebrew copy arrives */
-  .stat__value { margin: 0 0 .35rem; color: var(--accent-dark); font-size: clamp(1.5rem, 3vw, 1.9rem); font-weight: 700; line-height: 1.15; }
-  .stats .card p:last-child { margin: 0; }
-  .about__name { margin-bottom: 0; }
-</style>
