@@ -36,11 +36,14 @@ public/            favicon, share image (og-hero.jpg, 1200×630), _headers (secu
 - Photos are shown whole, never cropped. One exception: the home hero (PageHeader `cover`), a wide scene, never a portrait.
 - Every text colour ≥ 4.5:1 on every background.
 - Logical properties (`margin-inline-start`…) so every rule works left-to-right and right-to-left.
-- Breakpoints: 640 / 820 / 1000px only (phones ≤ 639px).
+- Breakpoints: 640 / 820px (phones ≤ 639px), plus 359px for the header only — the list is at the top of `global.css`.
+- One container (`.wrap`) for header, content and footer: max 68rem, side margin 16px on phones growing to 48px — so every edge lines up at every width.
+- Photos live in `src/assets/images` and are shown with Astro's `<Image>` (through PageHeader / Split): it makes the phone and desktop sizes. `public/` is only for files that need a fixed address (favicon, share image).
+- A text used in more than one place (the main buttons) is one entry in `common` in the copy, not repeated per page.
 - Shared patterns in global.css before writing a page style: `.role`, `.section-note`, `.card`, `.card--link`, `.card-grid(--2)`, `.facts`, `.btn-row`, `.eyebrow`.
 - Capitalisation (English):
   - **Title Case** for formal labels: section titles that name a thing ("Previous Coaching Experience"), job titles ("Head Triathlon Coach"), eyebrow labels, buttons.
-  - **Sentence case** for headings written as a sentence, a question or an informal phrase ("Why train with Ido", "A coaching philosophy shaped by…", the story sub-headings "How I found coaching"), and for list labels that aren't titles ("15+ years", "Holistic approach").
+  - **Sentence case** for headings written as a sentence, a question or an informal phrase ("Why train with Ido", "My coaching journey", the story sub-headings "How I found coaching"), and for list labels that aren't titles ("15+ years", "Holistic approach").
 - Typography: curly apostrophes and quotes (’ “ ”), spaced en dash ( – ), no em dash.
 
 The previous Vue version of the site is in `_archive/vue-site/` (not in git).

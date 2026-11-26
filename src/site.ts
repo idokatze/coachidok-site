@@ -26,7 +26,6 @@ export const site = {
   tagline: 'Endurance & Triathlon Coaching',
   fullName: 'Ido Katzenellenbogen',
   company: 'Baby Goat Ltd.',
-  phoneDisplay: '+972 54-475-5158',
   phoneE164: '+972544755158',
   whatsapp: 'https://wa.me/972544755158',
   email: 'idokatze@gmail.com',
@@ -44,20 +43,19 @@ export const nav = [
   { href: '/contact', key: 'contact' },
 ] as const;
 
-export type IconName = 'whatsapp' | 'phone' | 'mail' | 'trainingpeaks' | 'linkedin' | 'check' | 'close' | 'menu';
+export type IconName = 'whatsapp' | 'phone' | 'mail' | 'trainingpeaks' | 'linkedin' | 'close' | 'menu';
 
 /** Every way to reach me. Footer and contact page both read from this list; labels come from the copy (contactMethods.*). */
 export const contacts: {
   id: 'whatsapp' | 'email' | 'phone' | 'trainingPeaks' | 'linkedIn';
-  value: string;
   href: string;
   icon: IconName;
   external?: boolean;
   footer?: boolean;   // also shown in the footer row
 }[] = [
-  { id: 'whatsapp', value: site.phoneDisplay, href: site.whatsapp, icon: 'whatsapp', external: true, footer: true },
-  { id: 'email', value: site.email, href: `mailto:${site.email}`, icon: 'mail', footer: true },
-  { id: 'phone', value: site.phoneDisplay, href: `tel:${site.phoneE164}`, icon: 'phone' },
-  { id: 'trainingPeaks', value: 'TrainingPeaks', href: site.trainingPeaks, icon: 'trainingpeaks', external: true, footer: true },
-  { id: 'linkedIn', value: 'LinkedIn', href: site.linkedIn, icon: 'linkedin', external: true, footer: true },
+  { id: 'whatsapp', href: site.whatsapp, icon: 'whatsapp', external: true, footer: true },
+  { id: 'email', href: `mailto:${site.email}`, icon: 'mail', footer: true },
+  { id: 'phone', href: `tel:${site.phoneE164}`, icon: 'phone' },
+  { id: 'trainingPeaks', href: site.trainingPeaks, icon: 'trainingpeaks', external: true, footer: true },
+  { id: 'linkedIn', href: site.linkedIn, icon: 'linkedin', external: true, footer: true },
 ];

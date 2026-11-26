@@ -9,11 +9,10 @@ interface Props {
   soft?: boolean;
   prose?: boolean;
   id?: string;
-  class?: string;
 }
-const { title, eyebrow, lead, soft = false, prose = false, id, class: className } = Astro.props;
+const { title, eyebrow, lead, soft = false, prose = false, id } = Astro.props;
 ---
-<section id={id} class:list={['section', { 'section--soft': soft }, className]}>
+<section id={id} class:list={['section', { 'section--soft': soft }]}>
   <div class="wrap">
     <div class:list={{ prose }}>
       {eyebrow && <p class="eyebrow">{eyebrow}</p>}

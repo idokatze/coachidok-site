@@ -24,21 +24,19 @@ const bio = t.coachBio;
     <ReasonList items={t.about.experienceItems} />
   </Section>
 
-  <Section title={t.about.pathTitle}>
-    <div class="prose">
-      {bio.sections.map((section) => (
-        <>
-          <h3>{section.title}</h3>
-          {section.paragraphs.map((paragraph) => {
-            // A section may name words in its text that link to idokatze.com (Hebrew only — see scripts/check-copy.mjs)
-            const linkText = (section as { linkText?: string }).linkText;
-            if (!linkText || !paragraph.includes(linkText)) return <p>{paragraph}</p>;
-            const [before, after] = paragraph.split(linkText);
-            return <p>{before}<a href={site.theWork} target="_blank" rel="noopener">{linkText}</a>{after}</p>;
-          })}
-        </>
-      ))}
-    </div>
+  <Section prose title={t.about.pathTitle}>
+    {bio.sections.map((section) => (
+      <>
+        <h3>{section.title}</h3>
+        {section.paragraphs.map((paragraph) => {
+          // A section may name words in its text that link to idokatze.com (Hebrew only — see scripts/check-copy.mjs)
+          const linkText = (section as { linkText?: string }).linkText;
+          if (!linkText || !paragraph.includes(linkText)) return <p>{paragraph}</p>;
+          const [before, after] = paragraph.split(linkText);
+          return <p>{before}<a href={site.theWork} target="_blank" rel="noopener">{linkText}</a>{after}</p>;
+        })}
+      </>
+    ))}
   </Section>
 
   <Cta eyebrow={t.about.ctaEyebrow} title={t.about.ctaTitle} button={t.about.ctaButton} />

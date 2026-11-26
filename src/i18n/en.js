@@ -4,6 +4,9 @@ export default {
     },
     common: {
         localeToggle: 'Language',
+        bookConsultation: 'Book a Free Consultation',   // the main button: home hero, coaching header, coaching closing band
+        moreAboutMe: 'More About Me',
+        contactMethods: 'Contact methods',              // screen-reader label of the row of contact icons
     },
     header: {
         menu: 'Menu',
@@ -37,7 +40,6 @@ export default {
     hero: {
         title: 'High-Performance Triathlon Coaching for Serious Endurance Goals',
         lead: 'Work to achieve your goals with one of Israel’s most prominent triathlon coaches. More than 15 years of coaching triathletes of all levels. Juniors just starting out, all the way to European Cups and European Championships. Age-group athletes competing in their first sprint, to 70.3 and Ironman athletes trying to get the most out of themselves.',
-        cta: 'Book a Free Consultation',
     },
     home: {
         bringTitle: 'Why train with Ido',
@@ -128,7 +130,6 @@ export default {
             { label: '15+ years', text: 'short and long-course triathlon, draft-legal and non-drafting, swim, bike and run' },
         ],
         coachPortraitAlt: 'Triathlon coach Ido Katzenellenbogen by the water',
-        moreAboutMe: 'More About Me',
         introLead:
             'My coaching brings high-performance experience into a personal process built around the athlete, the goal, and the realities of life outside the sport.',
         pathTitle: 'My coaching journey',
@@ -141,9 +142,7 @@ export default {
         coachPortraitAlt: 'Triathlon coach Ido supporting an athlete before a swim session',
         title: 'Real partnership, clear direction, and less uncertainty',
         lead: 'Good online triathlon coaching is not just about writing sessions. It is an ongoing partnership built on planning, communication, feedback, and better decision-making over time.',
-        primaryCta: 'Book a Free Consultation',
-        secondaryCta: 'More About Me',
-        pathsEyebrow: 'Who I coach',
+        pathsEyebrow: 'Who I Coach',
         pathsTitle: 'From your first triathlon to Ironman',
         pathsLead:
             'You do not need to arrive at a particular level before coaching becomes relevant. Start with the situation that sounds most like you and see how my experience applies to your next step.',
@@ -195,7 +194,7 @@ export default {
         ],
         runningBody: 'A runner rather than a triathlete? I also coach distance runners, from 5K to the marathon.',
         runningLink: 'Talk about your running goal',
-        includesEyebrow: 'What coaching includes',
+        includesEyebrow: 'What Coaching Includes',
         includesTitle: 'More than a training plan',
         pillars: [
             {
@@ -219,7 +218,7 @@ export default {
                 body: 'Mental health is part of performance. As a certified Byron Katie facilitator, I help athletes work with the negative thoughts that bring them down, in training and on race day.',
             },
         ],
-        processEyebrow: 'How the process works',
+        processEyebrow: 'The Process',
         processTitle: 'How we get started',
         processLead:
             'Coaching is delivered remotely through TrainingPeaks and ongoing communication, for athletes in Israel and anywhere else in the world.',
@@ -236,7 +235,7 @@ export default {
             },
             {
                 number: '03',
-                title: 'Your Initial Training Direction',
+                title: 'Your Personal Plan',
                 body: 'Your plan is waiting in TrainingPeaks, on your phone, computer and smartwatch: every session has a clear purpose, and the week is built around your schedule. Where needed, we use simple field tests to fine-tune your training zones.',
             },
             {
@@ -245,16 +244,14 @@ export default {
                 body: 'You leave brief feedback after each session and more detail after key work. I review, respond, follow up, and adjust as training, fatigue, travel, illness, and life provide new information.',
             },
         ],
-        nextEyebrow: 'A simple first step',
+        nextEyebrow: 'A Simple First Step',
         nextTitle: 'Start with a conversation, not a commitment',
         nextLead:
             'Send a few details and I will respond shortly to arrange a free 10–15 minute call. We will discuss your background, goals, what you are looking for, the coaching options, and pricing. If the fit is right, we can continue. If it is not, there is no pressure or obligation.',
-        nextButton: 'Book a Free Consultation',
     },
     contact: {
         title: 'Let’s start with a simple conversation about your triathlon training and goals',
         lead: 'Share a few details about where you are now and what you are working toward.',
-        contactMethods: 'Contact methods',
         form: {
             title: 'Free consultation',
             intro: 'A few details are enough to understand your goals and how I may be able to help.',
@@ -263,12 +260,12 @@ export default {
             goal: 'Primary goal',
             message: 'Message',
             send: 'Send',
-            sending: 'Sending...',
+            sending: 'Sending…',
             goals: [
                 { id: 'first-triathlon', label: 'First triathlon' },
                 { id: 'short-course-progress', label: 'Sprint / Olympic-distance improvement' },
-                { id: 'long-course', label: 'Half / full-distance goal' },
-                { id: 'junior-elite', label: 'Junior elite development' },
+                { id: 'long-course', label: 'Half Ironman (70.3) or Ironman goal' },
+                { id: 'junior-elite', label: 'Junior and elite pathway' },
                 { id: 'distance-running', label: 'Distance running goal' },
                 { id: 'return-to-training', label: 'Return to consistent training' },
                 { id: 'not-sure', label: 'Not sure yet' },

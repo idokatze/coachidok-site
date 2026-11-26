@@ -2,15 +2,14 @@
 // A row of icon links to the ways to reach me.
 //   items:   which contacts to show (defaults to the footer set)
 //   variant: round (default — outlined circles, the footer) · tiles (filled squares in each service's colour, the contact page)
-//   class:   extra classes for the row
 import Icon from './Icon.astro';
 import { contacts } from '../site';
 import { useCopy } from '../i18n';
-interface Props { items?: typeof contacts; variant?: 'round' | 'tiles'; class?: string }
-const { items = contacts.filter((c) => c.footer), variant = 'round', class: className } = Astro.props;
+interface Props { items?: typeof contacts; variant?: 'round' | 'tiles' }
+const { items = contacts.filter((c) => c.footer), variant = 'round' } = Astro.props;
 const { t } = useCopy(Astro.url.pathname);
 ---
-<div class:list={['contact-icons', `contact-icons--${variant}`, className]}>
+<div class:list={['contact-icons', `contact-icons--${variant}`]} role="group" aria-label={t.common.contactMethods}>
   {items.map((c) => (
     <a class={`contact-icons__${c.id}`} href={c.href} aria-label={t.contactMethods[c.id]} title={t.contactMethods[c.id]} {...(c.external ? { target: '_blank', rel: 'noopener' } : {})}>
       <Icon name={c.icon} />

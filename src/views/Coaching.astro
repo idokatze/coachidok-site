@@ -20,8 +20,8 @@ const c = t.coaching;
 <Base title={page.title} description={page.description}>
   <PageHeader title={c.title} lead={c.lead} image={coachSupportingSwimmer} imageAlt={c.coachPortraitAlt}>
     <div class="btn-row">
-      <Button href={localize('/contact', lang)} arrow>{c.primaryCta}</Button>
-      <Button variant="ghost" href={localize('/about', lang)}>{c.secondaryCta}</Button>
+      <Button href={localize('/contact', lang)} arrow>{t.common.bookConsultation}</Button>
+      <Button variant="ghost" href={localize('/about', lang)}>{t.common.moreAboutMe}</Button>
     </div>
   </PageHeader>
 
@@ -54,6 +54,6 @@ const c = t.coaching;
     <Steps steps={c.steps} />
   </Section>
 
-  <Cta eyebrow={c.nextEyebrow} title={c.nextTitle} lead={c.nextLead} button={c.nextButton} />
+  <Cta eyebrow={c.nextEyebrow} title={c.nextTitle} lead={c.nextLead} button={t.common.bookConsultation} />
 </Base>
 

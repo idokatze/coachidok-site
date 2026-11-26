@@ -1,5 +1,5 @@
 ---
-// One page header for every page: optional eyebrow, a single title, an optional lead,
+// One page header for every page: a single title, an optional lead,
 // and an optional photo (beside the text on desktop, above it on mobile), shown whole — the layout adapts to the photo.
 // `image`: a photo imported from src/assets/images. Astro makes the smaller sizes and WebP copies when the site is built,
 // and each screen downloads the size it needs (srcset/sizes).
@@ -12,16 +12,15 @@
 //          Desktop: the photo fills the header; title in the sky, lead and buttons on the sand, the swimmers clear in between.
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
-interface Props { title: string; eyebrow?: string; lead?: string; image?: ImageMetadata; imageAlt?: string; hero?: boolean; cover?: boolean; }
-const { title, eyebrow, lead, image, imageAlt = '', hero = false, cover = false } = Astro.props;
+interface Props { title: string; lead?: string; image?: ImageMetadata; imageAlt?: string; hero?: boolean; cover?: boolean; }
+const { title, lead, image, imageAlt = '', hero = false, cover = false } = Astro.props;
 const aside = Astro.slots.has('aside');
 const beside = (image && !cover) || aside;
 ---
-<header class:list={['page-header', { 'page-header--img': beside, 'page-header--hero': hero, 'page-header--cover': image && cover }]}>
+<header class:list={['page-header', { 'page-header--hero': hero, 'page-header--cover': image && cover }]}>
   {image && cover && <Image class="page-header__bg" src={image} alt={imageAlt} format="webp" widths={[640, 960, 1280, 1920, 2560]} sizes="100vw" loading="eager" fetchpriority="high" />}
   <div class={`wrap${beside ? ' page-header__grid' : ''}`}>
     <div class="page-header__text">
-      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
       <h1 class="page-title">{title}</h1>
       {lead && <p class="page-header__lead">{lead}</p>}
       <slot />
@@ -34,8 +33,7 @@ const beside = (image && !cover) || aside;
 <style>
   .page-header { padding-block: var(--space-top) var(--space-head); }
   .page-title { margin: 0; line-height: 1.15; letter-spacing: -0.02em; text-wrap: balance; }
-  .eyebrow { margin-bottom: .6rem; }
-  .page-header__text :global(p:not(.eyebrow)) { max-width: var(--measure); margin: .9rem 0 0; }
+  .page-header__text :global(p) { max-width: var(--measure); margin: .9rem 0 0; }
 
   /* with a photo: photo above on phones, beside the text on desktop.
      The text comes first in the page's code (screen readers and search engines read the h1 first); only the photo is moved up on phones.
@@ -64,9 +62,8 @@ const beside = (image && !cover) || aside;
     content: ""; position: absolute; inset-inline: 0; bottom: 0; z-index: -1; height: var(--cover-photo-h);
     background: linear-gradient(to bottom, var(--cover) 0%, var(--cover-shade) 22%, transparent 48%, transparent 70%, var(--cover-shade) 100%);
   }
-  .page-header--cover .eyebrow { color: var(--cover-eyebrow); }
   .page-header--cover .page-title { color: var(--on-color); }
-  .page-header--cover .page-header__text :global(p:not(.eyebrow)) { color: var(--cover-text); }
+  .page-header--cover .page-header__text :global(p) { color: var(--cover-text); }
   /* phones: the buttons go down to the sand, below the swimmers — placed by the photo's height, so it holds on every phone */
   @media (max-width: 819px) {
     .page-header--cover .page-header__text :global(.btn-row) { position: absolute; inset-inline: var(--gutter); bottom: calc(var(--cover-photo-h) * .1); margin: 0; }

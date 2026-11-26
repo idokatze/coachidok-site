@@ -40,8 +40,6 @@
   --on-color: #f1f7f8;      /* text on dark/coloured backgrounds (mist, not white) */
   --accent: #06688a;        /* water blue — links, heading marks, list markers (4.5:1+ on every background) */
   --accent-dark: #064b63;   /* footer/CTA band, text on light buttons */
-  --accent-hover: #053d51;
-  --accent-soft: #d3e9f0;   /* light tint behind active nav items */
   --accent-border: rgb(6 104 138 / 40%);
   --accent-ring: rgb(6 104 138 / 12%);
   --action: #b83d1e;        /* race-day orange — the primary button (on-color text 5.2:1) */
@@ -60,11 +58,9 @@
   --cover: #142a36;                     /* home hero (PageHeader cover): the band behind the text */
   --cover-shade: rgb(20 42 54 / 80%);   /* the same colour over the photo, where text sits on it */
   --cover-text: #dbe8ec;                /* hero body text on the dark band */
-  --cover-eyebrow: #9fd3e3;             /* hero eyebrow on the dark band */
   --success: #2f6b3a;
   --error: #a33a2a;
   --tint: rgb(16 35 45 / 6%);      /* subtle hover background */
-  --hairline: rgb(16 35 45 / 8%);  /* header divider */
 
   /* type */
   --font: 'Assistant', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;   /* Assistant is self-hosted: imported in Base.astro */

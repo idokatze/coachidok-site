@@ -28,8 +28,8 @@ const structuredData = {
       alternateName: site.name,
       url: `${siteUrl}/`,
       image: `${siteUrl}/og-hero.jpg`,
-      jobTitle: 'Personal Triathlon & Endurance Coach',
-      knowsAbout: ['Triathlon coaching', 'Endurance coaching', 'Junior athlete development', 'Long-course triathlon', 'Swimming', 'Cycling', 'Running'],
+      jobTitle: t.coachBio.title,
+      knowsAbout: ['Triathlon coaching', 'Online triathlon coaching', 'Ironman and 70.3 coaching', 'Endurance coaching', 'Junior athlete development', 'Mental coaching', 'The Work of Byron Katie', 'Swimming', 'Cycling', 'Running'],
       sameAs: [site.trainingPeaks, site.linkedIn],
     },
     {
@@ -50,7 +50,7 @@ const structuredData = {
 
   <PageHeader hero cover title={t.hero.title} lead={t.hero.lead} image={heroStartLine}>
     <div class="btn-row">
-      <Button href={localize('/contact', lang)} arrow>{t.hero.cta}</Button>
+      <Button href={localize('/contact', lang)} arrow>{t.common.bookConsultation}</Button>
     </div>
   </PageHeader>
 
@@ -59,7 +59,7 @@ const structuredData = {
       <h2 class="section-title">{t.home.bringTitle}</h2>
       <ReasonList items={t.home.bringItems} />
       <div class="btn-row">
-        <Button variant="ghost" href={localize('/about', lang)} arrow>{t.about.moreAboutMe}</Button>
+        <Button variant="ghost" href={localize('/about', lang)} arrow>{t.common.moreAboutMe}</Button>
       </div>
     </Split>
   </Section>
