@@ -80,7 +80,9 @@ const beside = (image && !cover) || aside;
       grid-template-rows: auto 1fr auto auto;   /* title · empty middle (the swimmers) · lead · buttons */
     }
     .page-header--cover .page-title { grid-column: 1 / -1; max-width: 30ch; }
-    .page-header--cover .page-header__text .page-header__lead { grid-row: 3; align-self: end; margin: 0; }
+    .page-header--cover .page-header__text .page-header__lead { grid-row: 3; align-self: end; max-width: 58rem; margin: 0; text-shadow: 0 1px 2px var(--cover), 0 0 16px var(--cover); }
+    /* wider than the usual reading width: three lines instead of four, so the paragraph starts lower, on the darker sand;
+       the glow keeps it readable where the photo is light (the bright waterline, under the Hebrew text) — the photo itself isn't darkened */
     .page-header--cover .page-header__text :global(.btn-row) { grid-row: 4; justify-self: start; margin: 1.25rem 0 0; }
     .page-header__bg { inset: 0; height: 100%; object-position: 50% 55%; }
     .page-header--cover::before {
