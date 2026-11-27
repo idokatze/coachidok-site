@@ -210,6 +210,9 @@ ul.facts { display: grid; gap: .7rem; margin: 0 0 1.1em; padding: 0; list-style:
 .text-link:hover span { transform: translateX(4px); }
 [dir="rtl"] .text-link:hover span { transform: translateX(-4px); }
 
+/* Keeps a hyphenated Hebrew word (איש-ברזל) on one line — added automatically by src/middleware.ts */
+.nowrap { white-space: nowrap; }
+
 /* Role line — the role under a person's name (About header): the one line in a header that isn't plain body text */
 .role { margin: .5rem 0 0; color: var(--accent-dark); font-size: clamp(1.05rem, 2.2vw, 1.2rem); font-weight: 600; line-height: 1.35; }
 
