@@ -17,6 +17,7 @@ npm run build    # static site in dist/
 ```text
 src/
   assets/images/   the site's photos — shown with Astro's <Image>, which makes the phone/desktop sizes and WebP copies at build time
+  middleware.ts    runs on every page at build: keeps hyphenated Hebrew words (איש-ברזל) on one line
   site.ts          site data (name, contact details, nav, contacts) and the language helpers
   i18n/            all page copy: en.js, he.js (same keys in both), seo.ts (titles + descriptions)
   styles/global.css  tokens, base elements, layout, shared patterns (buttons, cards, facts, text link)
@@ -40,7 +41,7 @@ public/            favicon, share image (og-hero.jpg, 1200×630), _headers (secu
 - One container (`.wrap`) for header, content and footer: max 68rem, side margin 16px on phones growing to 48px — so every edge lines up at every width.
 - Photos live in `src/assets/images` and are shown with Astro's `<Image>` (through PageHeader / Split): it makes the phone and desktop sizes. `public/` is only for files that need a fixed address (favicon, share image).
 - A text used in more than one place (the main buttons) is one entry in `common` in the copy, not repeated per page.
-- Shared patterns in global.css before writing a page style: `.role`, `.section-note`, `.card`, `.card--link`, `.card-grid(--2)`, `.facts`, `.btn-row`, `.eyebrow`.
+- Shared patterns in global.css before writing a page style: `.role`, `.section-note`, `.card`, `.card--link`, `.card-grid(--2)`, `.facts`, `.btn-row`, `.eyebrow`, `.nowrap` (added automatically by the middleware).
 - Capitalisation (English):
   - **Title Case** for formal labels: section titles that name a thing ("Previous Coaching Experience"), job titles ("Head Triathlon Coach"), eyebrow labels, buttons.
   - **Sentence case** for headings written as a sentence, a question or an informal phrase ("Why train with Ido", "My coaching journey", the story sub-headings "How I found coaching"), and for list labels that aren't titles ("15+ years", "Holistic approach").
