@@ -24,7 +24,7 @@ const langs = [
   <div class="wrap header__inner" dir="ltr">
     <a class="brand" href={localize('/', lang)}>
       <span class="brand__mark" aria-hidden="true" set:html={goat} />
-      <span class="brand__text"><span class="brand__name">{site.name}</span><span class="brand__sub">{site.subtitle}</span></span>
+      <span class="brand__text" lang="en"><span class="brand__name">{site.name}</span><span class="brand__sub">{site.subtitle}</span></span>
     </a>
     <nav class="nav" dir={dir} aria-label={t.header.primaryNav}>
       {mainNav.map((item) => (
@@ -61,13 +61,31 @@ const langs = [
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
+  // Keyboard focus never sits under the sticky header. Browsers scroll a focused element into view only when it is off screen,
+  // and one hidden behind the header still counts as on screen — so when that happens, scroll it down below the header.
+  // Checked one frame later, after the browser's own scrolling.
+  document.addEventListener('focusin', (e) => {
+    const el = e.target as HTMLElement;
+    if (!header || header.contains(el) || el.classList.contains('skip-link')) return;
+    requestAnimationFrame(() => {
+      const gap = el.getBoundingClientRect().top - header.getBoundingClientRect().bottom - 16;
+      if (gap < 0) window.scrollBy({ top: gap });
+    });
+  });
+
   // Mobile menu
   const setPanel = (open: boolean) => {
     toggle?.setAttribute('aria-expanded', String(open));
     panel?.toggleAttribute('data-open', open);
   };
   toggle?.addEventListener('click', () => setPanel(toggle.getAttribute('aria-expanded') !== 'true'));
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setPanel(false); });
+  // Escape closes it; if the focus was inside the menu, it goes back to the menu button (otherwise a keyboard user loses their place)
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape' || toggle?.getAttribute('aria-expanded') !== 'true') return;
+    const inside = panel?.contains(document.activeElement);
+    setPanel(false);
+    if (inside) toggle?.focus();
+  });
 </script>
 
 <style>

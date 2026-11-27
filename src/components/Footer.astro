@@ -11,7 +11,7 @@ const links = nav.filter((l) => l.href !== '/');
 <footer class="footer">
   <div class="wrap">
     <div class="footer__top">
-      <div>
+      <div lang="en">{/* the brand name and tagline are English in both languages */}
         <div class="footer__name">{site.name}</div>
         <p class="footer__tag">{site.tagline}</p>
       </div>
@@ -23,7 +23,7 @@ const links = nav.filter((l) => l.href !== '/');
     </nav>
 
     <div class="footer__bottom">
-      <span class="footer__company"><span class="footer__goat" aria-hidden="true" set:html={goat} /><span dir="ltr">© {year} {site.company}</span></span>
+      <span class="footer__company"><span class="footer__goat" aria-hidden="true" set:html={goat} /><span dir="ltr" lang="en">© {year} {site.company}</span></span>
     </div>
   </div>
 </footer>

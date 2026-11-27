@@ -259,6 +259,8 @@ export default {
             email: 'אימייל',
             goal: 'מטרה עיקרית',
             message: 'הודעה',
+            optional: 'לא חובה',
+            goalPrompt: 'בחירה…',
             send: 'שליחה',
             sending: 'שולח…',
             goals: [

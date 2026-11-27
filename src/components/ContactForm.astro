@@ -23,27 +23,27 @@ const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY ?? '';
 
   <div class="field-row">
     <div class="field">
-      <label class="visually-hidden" for="contact-name">{f.name}</label>
-      <input id="contact-name" name="name" type="text" autocomplete="name" placeholder={f.name} required aria-describedby="contact-name-error" />
+      <label for="contact-name">{f.name}</label>
+      <input id="contact-name" name="name" type="text" autocomplete="name" required aria-describedby="contact-name-error" />
       <p class="field__error" id="contact-name-error" aria-live="polite"></p>
     </div>
     <div class="field">
-      <label class="visually-hidden" for="contact-email">{f.email}</label>
-      <input id="contact-email" name="email" type="email" autocomplete="email" placeholder={f.email} required aria-describedby="contact-email-error" />
+      <label for="contact-email">{f.email}</label>
+      <input id="contact-email" name="email" type="email" autocomplete="email" required aria-describedby="contact-email-error" />
       <p class="field__error" id="contact-email-error" aria-live="polite"></p>
     </div>
   </div>
   <div class="field">
-    <label class="visually-hidden" for="contact-goal">{f.goal}</label>
+    <label for="contact-goal">{f.goal}</label>
     <select id="contact-goal" name="goal" required aria-describedby="contact-goal-error">
-      <option value="" selected disabled>{f.goal}</option>
+      <option value="" selected disabled>{f.goalPrompt}</option>
       {f.goals.map((goal) => <option value={goal.id} data-label={goal.label}>{goal.label}</option>)}
     </select>
     <p class="field__error" id="contact-goal-error" aria-live="polite"></p>
   </div>
   <div class="field">
-    <label class="visually-hidden" for="contact-message">{f.message}</label>
-    <textarea id="contact-message" name="message" rows="5" placeholder={f.message}></textarea>
+    <label for="contact-message">{f.message} <span class="field__optional">({f.optional})</span></label>
+    <textarea id="contact-message" name="message" rows="5"></textarea>
   </div>
 
   <button class="btn btn--primary" type="submit">{f.send}</button>
@@ -120,6 +120,9 @@ const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY ?? '';
   .field-row { display: grid; gap: 1rem; }
   @media (min-width: 640px) { .field-row { grid-template-columns: 1fr 1fr; } }
   .field { display: grid; gap: .35rem; }
+  /* every field has its label above it (a placeholder disappears as soon as you type); the one field that may stay empty says so */
+  .field label { color: var(--ink); font-size: .95rem; font-weight: 600; }
+  .field__optional { color: var(--muted); font-weight: 400; }
   .field input, .field select, .field textarea {
     width: 100%; padding: .85rem 1rem; border: 1px solid var(--line); border-radius: var(--radius-sm);
     background: var(--bg); color: var(--ink); font: inherit;
@@ -132,7 +135,7 @@ const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY ?? '';
     background-repeat: no-repeat; background-size: 1.1rem; background-position: right 1rem center;
   }
   :global([dir="rtl"]) .field select { background-position: left 1rem center; }
-  .field select:invalid { color: var(--muted); }   /* the "Primary goal" prompt looks like the other placeholders until a goal is picked */
+  .field select:invalid { color: var(--muted); }   /* the "Choose…" prompt is muted until a goal is picked */
   .field option { color: var(--ink); }
   .field textarea { resize: vertical; }
   .field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible { border-color: var(--accent); outline: 3px solid var(--accent-ring); outline-offset: 0; }

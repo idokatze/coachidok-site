@@ -259,6 +259,8 @@ export default {
             email: 'Email',
             goal: 'Primary goal',
             message: 'Message',
+            optional: 'optional',          // after the label of a field that may stay empty
+            goalPrompt: 'Choose…',         // the dropdown's first line, before a goal is picked
             send: 'Send',
             sending: 'Sending…',
             goals: [
